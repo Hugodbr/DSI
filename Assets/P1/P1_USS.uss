@@ -1,0 +1,13 @@
+.footer {
+    -unity-background-image-tint-color: rgb(183, 70, 70);
+    background-color: rgb(255, 0, 0);
+}
+
+.body {
+    align-items: stretch;
+    flex-grow: 1;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    align-self: stretch;
+}
