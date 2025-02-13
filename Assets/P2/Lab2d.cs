@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class Lab2 : MonoBehaviour
+public class Lab2d : MonoBehaviour
 {
     VisualElement grid_azul;
     VisualElement grid_verde;
@@ -22,9 +22,19 @@ public class Lab2 : MonoBehaviour
         UIDocument uidoc = GetComponent<UIDocument>();
         VisualElement rootve = uidoc.rootVisualElement;
 
-        grid_azul = rootve.Q("gridAzul");
-        grid_verde = rootve.Q("gridVerde");
-        grid_naranja = rootve.Q("gridNaranja");
+        List<VisualElement> botones_azules = rootve.Query(className: "bazul").ToList();
+
+        foreach(VisualElement bazul in botones_azules)
+        {
+            bazul.RegisterCallback<MouseDownEvent>(evt => {
+                SetPageAzul();
+            });
+        }
+
+
+        grid_azul = rootve.Q("menuAzul");
+        grid_verde = rootve.Q("menuVerde");
+        grid_naranja = rootve.Q("menuNaranja");
 
         header = rootve.Q("header");
 
@@ -45,10 +55,7 @@ public class Lab2 : MonoBehaviour
             grid_naranja.style.display = DisplayStyle.Flex;
         });
 
-        List<VisualElement> items_naranjas = rootve.Query(className: "slider").ToList();
-        VisualElement slider = items_naranjas.First();
-        Debug.Log(slider);
-        slider.style.backgroundColor = Color.blue;
+
 
     }
 
@@ -59,5 +66,9 @@ public class Lab2 : MonoBehaviour
         grid_naranja.style.display = DisplayStyle.None;
     }
 
-
+    private void SetPageAzul()
+    {
+        Undisplay();
+        grid_azul.style.display = DisplayStyle.Flex;
+    }
 }

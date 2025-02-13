@@ -1,0 +1,49 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/P2/p2uss%20d.uss?fileID=7433441132597879392&amp;guid=e72c75342a97f5444a48ea3991537147&amp;type=3#p2uss d" />
+    <ui:VisualElement name="main" style="flex-grow: 1; flex-direction: row;">
+        <ui:VisualElement name="back" />
+        <ui:VisualElement name="menuNaranja" style="flex-grow: 1; display: none;">
+            <ui:VisualElement name="gridNaranja" class="grid" style="flex-grow: 1; visibility: visible; display: flex;">
+                <ui:VisualElement name="header" class="item itemNaranja" style="flex-grow: 0; flex-direction: row; height: 20%; background-color: rgb(255, 223, 165);">
+                    <ui:VisualElement name="b1" class="bazul" style="flex-grow: 1; margin-top: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 5px; justify-content: center; align-self: center; align-items: center;">
+                        <ui:Label tabindex="-1" text="To blue" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="b2" class="bverde" style="flex-grow: 1; margin-top: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 5px; align-self: center;">
+                        <ui:Label tabindex="-1" text="To green" parse-escape-sequences="true" display-tooltip-when-elided="true" style="justify-content: flex-start; align-self: center; align-items: auto;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="item2" class="item itemNaranja" style="flex-grow: 1;" />
+                <ui:VisualElement name="item3" class="item itemNaranja" style="flex-grow: 1;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="menuVerde" style="flex-grow: 1; display: none;">
+            <ui:VisualElement name="gridVerde" class="grid" style="flex-grow: 1; visibility: visible; display: flex;">
+                <ui:VisualElement name="header" class="item itemNaranja" style="flex-grow: 0; flex-direction: row; height: 20%; background-color: rgb(182, 255, 165);">
+                    <ui:VisualElement name="b1" class="bazul" style="flex-grow: 1; margin-top: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 5px; justify-content: center; align-self: center; align-items: center;">
+                        <ui:Label tabindex="-1" text="To blue" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="b2" class="bnaranja" style="flex-grow: 1; margin-top: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 5px; align-self: center;">
+                        <ui:Label tabindex="-1" text="To orange" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="false" style="align-self: center;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="item2" class="item itemVerde" style="flex-grow: 1;" />
+                <ui:VisualElement name="item3" class="item itemVerde" style="flex-grow: 1;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="menuAzul" style="flex-grow: 1; display: flex;">
+            <ui:VisualElement name="gridAzul" class="grid" style="flex-grow: 1; visibility: visible; display: flex;">
+                <ui:VisualElement name="header" class="item itemNaranja" style="flex-grow: 0; flex-direction: row; height: 20%; background-color: rgb(139, 194, 243);">
+                    <ui:VisualElement name="b1" class="bverde" style="flex-grow: 1; margin-top: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 5px; justify-content: center; align-self: center; align-items: center;">
+                        <ui:Label tabindex="-1" text="To green" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="b2" class="bnaranja" style="flex-grow: 1; margin-top: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 5px; align-self: center;">
+                        <ui:Label tabindex="-1" text="To orange" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="false" style="align-self: center;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="item2" class="item itemAzul" style="flex-grow: 1;" />
+                <ui:VisualElement name="item3" class="item itemAzul" style="flex-grow: 1;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="next" class="botones" />
+    </ui:VisualElement>
+</ui:UXML>

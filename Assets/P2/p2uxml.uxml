@@ -17,8 +17,12 @@
             <ui:VisualElement name="item3" class="item itemAzul" style="flex-grow: 1;" />
         </ui:VisualElement>
         <ui:VisualElement name="gridNaranja" class="grid" style="flex-grow: 1; visibility: visible; display: flex;">
-            <ui:VisualElement name="item1" class="item itemNaranja" style="flex-grow: 1;" />
-            <ui:VisualElement name="item2" class="item itemNaranja" style="flex-grow: 1;" />
+            <ui:VisualElement name="item1" class="item itemNaranja" style="flex-grow: 1; justify-content: center;">
+                <ui:Slider label="Music" high-value="100" class="slider" />
+            </ui:VisualElement>
+            <ui:VisualElement name="item2" class="item itemNaranja" style="flex-grow: 1;">
+                <ui:ProgressBar value="22" title="my-progress" />
+            </ui:VisualElement>
             <ui:VisualElement name="item3" class="item itemNaranja" style="flex-grow: 1;" />
         </ui:VisualElement>
     </ui:VisualElement>

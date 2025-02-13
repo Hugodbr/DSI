@@ -38,17 +38,22 @@
     background-color: rgb(255, 164, 0);
 }
 
-.itemNaranja:hover {
-    background-color: rgb(168, 126, 50);
+.botones {
+    background-color: rgb(111, 111, 111);
+    width: auto;
+    flex-basis: 10%;
+    flex-grow: 0;
 }
 
-.itemVerde:hover {
-    background-color: rgb(54, 144, 58);
+.bverde {
+    background-color: rgb(65, 255, 23);
 }
 
-.itemAzul:hover {
-    background-color: rgb(49, 126, 152);
+.bnaranja {
+    background-color: rgb(255, 143, 42);
 }
 
-.slider {
+.bazul {
+    -unity-background-image-tint-color: rgb(0, 184, 255);
+    background-color: rgb(0, 237, 255);
 }
