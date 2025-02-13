@@ -5,20 +5,53 @@ using UnityEngine.UIElements;
 
 public class Lab2 : MonoBehaviour
 {
+    VisualElement grid_azul;
+    VisualElement grid_verde;
+    VisualElement grid_naranja;
+
+    VisualElement p_azul;
+    VisualElement p_verde;
+    VisualElement p_naranja;
+
+    VisualElement header;
 
     private void OnEnable()
     {
         UIDocument uidoc = GetComponent<UIDocument>();
         VisualElement rootve = uidoc.rootVisualElement;
 
-        UQueryBuilder<VisualElement> builder = new UQueryBuilder<VisualElement>(rootve);
-        List<VisualElement> lista_ve = builder.ToList();
+        grid_azul = rootve.Q("gridAzul");
+        grid_verde = rootve.Q("gridVerde");
+        grid_naranja = rootve.Q("gridNaranja");
 
-        lista_ve.ForEach(elem => Debug.Log(elem.name));
+        header = rootve.Q("header");
 
-        VisualElement grid = rootve.Q("grid");
-        VisualElement item3 = grid.Q("item3");
+        p_azul = header.Q("P_azul");
+        p_verde = header.Q("P_verde");
+        p_naranja = header.Q("P_naranja");
 
-        item3.style.display = DisplayStyle.None;
+        p_azul.RegisterCallback<MouseDownEvent>(evt => {
+            Undisplay();
+            grid_azul.style.display = DisplayStyle.Flex;
+        });
+        p_verde.RegisterCallback<MouseDownEvent>(evt => {
+            Undisplay();
+            grid_verde.style.display = DisplayStyle.Flex;
+        });
+        p_naranja.RegisterCallback<MouseDownEvent>(evt => {
+            Undisplay();
+            grid_naranja.style.display = DisplayStyle.Flex;
+        });
+
+
     }
+
+    private void Undisplay()
+    {
+        grid_azul.style.display = DisplayStyle.None;
+        grid_verde.style.display = DisplayStyle.None;
+        grid_naranja.style.display = DisplayStyle.None;
+    }
+
+
 }

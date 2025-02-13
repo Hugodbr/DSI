@@ -1,10 +1,25 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/P2/p2uss.uss?fileID=7433441132597879392&amp;guid=81010032474e3194fb6c94e1b3c3e0a9&amp;type=3#p2uss" />
-    <ui:VisualElement name="main" style="flex-grow: 1;">
-        <ui:VisualElement name="grid" class="grid" style="flex-grow: 1;">
-            <ui:VisualElement name="item1" class="item" style="flex-grow: 1;" />
-            <ui:VisualElement name="item2" class="item" style="flex-grow: 1;" />
-            <ui:VisualElement name="item3" class="item" style="flex-grow: 1;" />
+    <ui:VisualElement name="main" style="flex-grow: 1; flex-direction: column;">
+        <ui:VisualElement name="header" class="header" style="flex-grow: 0; height: 20%; flex-basis: auto; flex-direction: row;">
+            <ui:VisualElement name="P_verde" class="pestana" style="flex-grow: 1; background-color: rgb(0, 255, 12);" />
+            <ui:VisualElement name="P_azul" class="pestana" style="flex-grow: 1; -unity-background-image-tint-color: rgb(40, 158, 255); background-color: rgb(0, 192, 255);" />
+            <ui:VisualElement name="P_naranja" class="pestana" style="flex-grow: 1; background-color: rgb(255, 164, 0);" />
+        </ui:VisualElement>
+        <ui:VisualElement name="gridVerde" class="grid" style="flex-grow: 1; display: none;">
+            <ui:VisualElement name="item1" class="itemVerde item" />
+            <ui:VisualElement name="item2" class="item itemVerde" style="flex-grow: 1;" />
+            <ui:VisualElement name="item3" class="item itemVerde" style="flex-grow: 1;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="gridAzul" class="grid" style="flex-grow: 1; visibility: visible; display: none;">
+            <ui:VisualElement name="item1" class="item itemAzul" style="flex-grow: 1;" />
+            <ui:VisualElement name="item2" class="item itemAzul" style="flex-grow: 1;" />
+            <ui:VisualElement name="item3" class="item itemAzul" style="flex-grow: 1;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="gridNaranja" class="grid" style="flex-grow: 1; visibility: visible; display: flex;">
+            <ui:VisualElement name="item1" class="item itemNaranja" style="flex-grow: 1;" />
+            <ui:VisualElement name="item2" class="item itemNaranja" style="flex-grow: 1;" />
+            <ui:VisualElement name="item3" class="item itemNaranja" style="flex-grow: 1;" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
