@@ -1,0 +1,37 @@
+.obj {
+    width: 133px;
+    background-color: rgb(0, 0, 0);
+    height: 107px;
+    flex-shrink: 0;
+    justify-content: flex-start;
+    align-items: center;
+    align-self: center;
+}
+
+.grid {
+    background-color: rgb(81, 255, 54);
+}
+
+.item {
+    background-color: rgb(255, 145, 28);
+    flex-basis: 33%;
+    height: 31%;
+    width: 30%;
+    min-width: 30%;
+    max-width: 27%;
+    margin-top: 3px;
+    margin-right: 3px;
+    margin-bottom: 3px;
+    margin-left: 3px;
+    align-self: auto;
+    justify-content: flex-start;
+    align-items: auto;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-left-color: rgb(255, 49, 226);
+    border-right-color: rgb(255, 49, 226);
+    border-top-color: rgb(255, 49, 226);
+    border-bottom-color: rgb(255, 49, 226);
+}

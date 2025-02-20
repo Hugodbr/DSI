@@ -23,11 +23,25 @@ public class Lab2d : MonoBehaviour
         VisualElement rootve = uidoc.rootVisualElement;
 
         List<VisualElement> botones_azules = rootve.Query(className: "bazul").ToList();
+        List<VisualElement> botones_verdes = rootve.Query(className: "bverde").ToList();
+        List<VisualElement> botones_naranjas = rootve.Query(className: "bnaranja").ToList();
 
-        foreach(VisualElement bazul in botones_azules)
+        foreach(VisualElement b in botones_azules)
         {
-            bazul.RegisterCallback<MouseDownEvent>(evt => {
+            b.RegisterCallback<MouseDownEvent>(evt => {
                 SetPageAzul();
+            });
+        }        
+        foreach(VisualElement b in botones_verdes)
+        {
+            b.RegisterCallback<MouseDownEvent>(evt => {
+                SetPageVerde();
+            });
+        }        
+        foreach(VisualElement b in botones_naranjas)
+        {
+            b.RegisterCallback<MouseDownEvent>(evt => {
+                SetPageNaranja();
             });
         }
 
@@ -35,27 +49,6 @@ public class Lab2d : MonoBehaviour
         grid_azul = rootve.Q("menuAzul");
         grid_verde = rootve.Q("menuVerde");
         grid_naranja = rootve.Q("menuNaranja");
-
-        header = rootve.Q("header");
-
-        p_azul = header.Q("P_azul");
-        p_verde = header.Q("P_verde");
-        p_naranja = header.Q("P_naranja");
-
-        p_azul.RegisterCallback<MouseDownEvent>(evt => {
-            Undisplay();
-            grid_azul.style.display = DisplayStyle.Flex;
-        });
-        p_verde.RegisterCallback<MouseDownEvent>(evt => {
-            Undisplay();
-            grid_verde.style.display = DisplayStyle.Flex;
-        });
-        p_naranja.RegisterCallback<MouseDownEvent>(evt => {
-            Undisplay();
-            grid_naranja.style.display = DisplayStyle.Flex;
-        });
-
-
 
     }
 
@@ -70,5 +63,15 @@ public class Lab2d : MonoBehaviour
     {
         Undisplay();
         grid_azul.style.display = DisplayStyle.Flex;
+    }    
+    private void SetPageVerde()
+    {
+        Undisplay();
+        grid_verde.style.display = DisplayStyle.Flex;
+    }    
+    private void SetPageNaranja()
+    {
+        Undisplay();
+        grid_naranja.style.display = DisplayStyle.Flex;
     }
 }
