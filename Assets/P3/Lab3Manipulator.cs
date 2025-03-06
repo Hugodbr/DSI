@@ -1,10 +1,13 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 
-public class Lab3Manipulator : Manipulator
+public class Lab3Manipulator : MouseManipulator
 {
+    public Lab3Manipulator()
+    {
+        activators.Add(new ManipulatorActivationFilter { button = MouseButton.RightMouse });
+    }
 
     protected override void RegisterCallbacksOnTarget()
     {
@@ -14,8 +17,8 @@ public class Lab3Manipulator : Manipulator
     protected override void UnregisterCallbacksFromTarget()
     {
         target.UnregisterCallback<MouseDownEvent>(OnMouseDown);
-
     }
+
     private void OnMouseDown(MouseDownEvent mev)
     {
         target.style.borderBottomColor = Color.white;
