@@ -10,7 +10,7 @@ public class Lab3Dragger : MonoBehaviour
         VisualElement item = root.Q("item");
 
         // item.AddManipulator(new Lab3Manipulator());
-        // item.AddManipulator(new Resizer());
-        item.AddManipulator(new Dragger());
+        item.AddManipulator(new Resizer());
+        // item.AddManipulator(new Dragger());
     }
 }

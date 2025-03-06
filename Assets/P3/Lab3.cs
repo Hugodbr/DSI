@@ -23,11 +23,9 @@ public class Lab3 : MonoBehaviour
         List<VisualElement> lveleft = leftgr.Children().ToList();
         List<VisualElement> lveright = rightgr.Children().ToList();
 
-        lveleft.ForEach(elem => elem.AddManipulator(new Lab3Manipulator()));
-        lveright.ForEach(elem => elem.AddManipulator(new Lab3Manipulator()));
-        // lveleft.ForEach(elem => elem.AddManipulator(new Dragger()));
-        // lveright.ForEach(elem => elem.AddManipulator(new Dragger()));
-        lveleft.ForEach(elem => elem.AddManipulator(new Resizer()));
-        lveright.ForEach(elem => elem.AddManipulator(new Resizer()));
+        lveleft.ForEach(elem => elem.AddManipulator(new Lab3Manipulator(ref lveleft)));
+        lveright.ForEach(elem => elem.AddManipulator(new Lab3Manipulator(ref lveright)));
+
+
     }
 }

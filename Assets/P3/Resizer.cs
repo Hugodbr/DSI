@@ -1,3 +1,5 @@
+using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -11,7 +13,8 @@ public class Resizer : PointerManipulator
     public Resizer()
     {
         m_PointerId = -1;
-        activators.Add(new ManipulatorActivationFilter { button = MouseButton.LeftMouse });
+        activators.Add(new ManipulatorActivationFilter { button = UnityEngine.UIElements.MouseButton.LeftMouse });
+        activators.Add(new ManipulatorActivationFilter { button = UnityEngine.UIElements.MouseButton.MiddleMouse });
         m_Active = false;
     }
 
@@ -20,6 +23,8 @@ public class Resizer : PointerManipulator
         target.RegisterCallback<PointerDownEvent>(OnPointerDown);
         target.RegisterCallback<PointerMoveEvent>(OnPointerMove);
         target.RegisterCallback<PointerUpEvent>(OnPointerUp);
+        target.RegisterCallback<WheelEvent>(OnWheelMove);
+
     }
 
     protected override void UnregisterCallbacksFromTarget()
@@ -27,6 +32,7 @@ public class Resizer : PointerManipulator
         target.UnregisterCallback<PointerDownEvent>(OnPointerDown);
         target.UnregisterCallback<PointerMoveEvent>(OnPointerMove);
         target.UnregisterCallback<PointerUpEvent>(OnPointerUp);
+        target.UnregisterCallback<WheelEvent>(OnWheelMove);
     }
 
     protected void OnPointerDown(PointerDownEvent e)
@@ -50,14 +56,29 @@ public class Resizer : PointerManipulator
 
     protected void OnPointerMove(PointerMoveEvent e)
     {
+        // if (!m_Active || !target.HasPointerCapture(m_PointerId))
+        // {
+        //     return;
+        // }
+
+        // Vector2 diff = e.localPosition - m_Start;
+        // target.style.height = m_StartSize.y + diff.y;
+        // target.style.width = m_StartSize.x + diff.x;
+
+        // e.StopPropagation();
+    }
+
+        protected void OnWheelMove(WheelEvent e)
+    {
         if (!m_Active || !target.HasPointerCapture(m_PointerId))
         {
             return;
         }
 
-        Vector2 diff = e.localPosition - m_Start;
-        target.style.height = m_StartSize.y + diff.y;
-        target.style.width = m_StartSize.x + diff.x;
+        Debug.Log(e.delta);
+        Vector2 diff = math.sign(e.delta.y) * new Vector3(1,1,0) - m_Start;
+        target.style.height = target.style.height.ConvertTo<float>() * math.sign(e.delta.y) * 1.2f;// m_StartSize.y + diff.y;
+        target.style.width = target.style.width.ConvertTo<float>() * math.sign(e.delta.y) * 1.2f;//m_StartSize.x + diff.x;
 
         e.StopPropagation();
     }
