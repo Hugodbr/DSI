@@ -14,7 +14,7 @@
 
 .item {
     background-color: rgb(255, 145, 28);
-    flex-basis: 33%;
+    flex-basis: auto;
     height: 31%;
     width: 30%;
     min-width: 30%;

@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -32,15 +31,16 @@ public class Dragger : PointerManipulator
     protected void OnPointerDown(PointerDownEvent e)
     {
 
-        if (!m_Active)
+        if (m_Active)
         {
+            // Debug.Log("down");
+
             e.StopImmediatePropagation();
             return;
         }
 
         if (CanStartManipulation(e))
         {
-            // Debug.Log("down");
 
             m_Start = e.localPosition;
             m_PointerId = e.pointerId;
@@ -73,6 +73,7 @@ public class Dragger : PointerManipulator
 
         m_Active = false;
         target.ReleaseMouse();
+        // m_PointerId = -1;
         e.StopPropagation();
     }
 }
