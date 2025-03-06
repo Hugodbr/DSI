@@ -21,10 +21,13 @@ public class Lab3Manipulator : MouseManipulator
 
     private void OnMouseDown(MouseDownEvent mev)
     {
-        target.style.borderBottomColor = Color.white;
-        target.style.borderLeftColor = Color.white;
-        target.style.borderRightColor = Color.white;
-        target.style.borderTopColor = Color.white;
-        mev.StopPropagation();
+        if (CanStartManipulation(mev)) 
+        {
+            target.style.borderBottomColor = Color.white;
+            target.style.borderLeftColor = Color.white;
+            target.style.borderRightColor = Color.white;
+            target.style.borderTopColor = Color.white;
+            mev.StopPropagation();
+        }
     }
 }
