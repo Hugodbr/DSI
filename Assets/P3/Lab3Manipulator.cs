@@ -1,51 +1,58 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-
 public class Lab3Manipulator : MouseManipulator
 {
-    List<VisualElement> allElems;
+    private List<VisualElement> allElems;
 
     public Lab3Manipulator(ref List<VisualElement> _allElems)
     {
         allElems = _allElems;
-        activators.Add(new ManipulatorActivationFilter { button = MouseButton.RightMouse });
     }
 
     protected override void RegisterCallbacksOnTarget()
     {
-        target.RegisterCallback<MouseDownEvent>(OnMouseDown);
+        target.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
+        target.RegisterCallback<MouseLeaveEvent>(OnMouseLeave);
     }
 
     protected override void UnregisterCallbacksFromTarget()
     {
-        target.UnregisterCallback<MouseDownEvent>(OnMouseDown);
+        target.UnregisterCallback<MouseEnterEvent>(OnMouseEnter);
+        target.UnregisterCallback<MouseLeaveEvent>(OnMouseLeave);
     }
 
-    private void OnMouseDown(MouseDownEvent mev)
+    private void OnMouseEnter(MouseEnterEvent evt)
     {
+        ResetAll();
 
-        if (CanStartManipulation(mev)) 
+        target.style.borderBottomColor = Color.blue;
+        target.style.borderLeftColor = Color.blue;
+        target.style.borderRightColor = Color.blue;
+        target.style.borderTopColor = Color.blue;
+
+        evt.StopPropagation();
+    }
+
+    private void OnMouseLeave(MouseLeaveEvent evt)
+    {
+        target.style.borderBottomColor = Color.white;
+        target.style.borderLeftColor = Color.white;
+        target.style.borderRightColor = Color.white;
+        target.style.borderTopColor = Color.white;
+
+        evt.StopPropagation();
+    }
+
+    private void ResetAll()
+    {
+        allElems.ForEach(vl =>
         {
-            resetAll();
-            
-            target.style.borderBottomColor = Color.blue;
-            target.style.borderLeftColor = Color.blue;
-            target.style.borderRightColor = Color.blue;
-            target.style.borderTopColor = Color.blue;
-            mev.StopPropagation();
-        }
-    }
-
-    private void resetAll()
-    {
-        allElems.ForEach(vl => {
-            vl.style.borderBottomColor = new Color(255.0f, 49.0f, 226.0f, 1.0f);
-            vl.style.borderLeftColor = new Color(255.0f, 49.0f, 226.0f, 1.0f);
-            vl.style.borderRightColor = new Color(255.0f, 49.0f, 226.0f, 1.0f);
-            vl.style.borderTopColor = new Color(255.0f, 49.0f, 226.0f, 1.0f);
+            vl.style.borderBottomColor = Color.white;
+            vl.style.borderLeftColor = Color.white;
+            vl.style.borderRightColor = Color.white;
+            vl.style.borderTopColor = Color.white;
         });
     }
 }

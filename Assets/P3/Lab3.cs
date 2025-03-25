@@ -15,13 +15,11 @@ public class Lab3 : MonoBehaviour
         VisualElement leftgr = leftPanel.Q("lgrid");
         VisualElement rightgr = rightPanel.Q("rgrid");
 
-        // leftPanel.AddManipulator(new Lab3Manipulator());
-        // rightPanel.AddManipulator(new Lab3Manipulator());
-        // leftPanel.AddManipulator(new Dragger());
-        // rightPanel.AddManipulator(new Dragger());
-
         List<VisualElement> lveleft = leftgr.Children().ToList();
         List<VisualElement> lveright = rightgr.Children().ToList();
+
+        lveleft.ForEach(elem => elem.AddManipulator(new Dragger()));
+        lveright.ForEach(elem => elem.AddManipulator(new Dragger()));
 
         lveleft.ForEach(elem => elem.AddManipulator(new Lab3Manipulator(ref lveleft)));
         lveright.ForEach(elem => elem.AddManipulator(new Lab3Manipulator(ref lveright)));

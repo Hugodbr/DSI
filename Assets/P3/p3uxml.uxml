@@ -2,7 +2,7 @@
     <Style src="project://database/Assets/P3/p3uss.uss?fileID=7433441132597879392&amp;guid=3f6e66360083a9446b30c20b3058fa67&amp;type=3#p3uss" />
     <ui:VisualElement name="main" style="flex-grow: 1; background-color: rgb(255, 255, 255); flex-direction: row;">
         <ui:VisualElement name="leftPanel" style="flex-grow: 1; background-color: rgb(47, 255, 0);">
-            <ui:VisualElement name="lgrid" class="grid" style="flex-grow: 1; background-color: rgb(0, 0, 0); margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px; flex-direction: row; flex-wrap: wrap;">
+            <ui:VisualElement name="lgrid" class="grid" style="background-color: rgb(0, 0, 0); margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px;">
                 <ui:VisualElement name="item" class="item" />
                 <ui:VisualElement name="item" class="item" style="flex-grow: 1;" />
                 <ui:VisualElement name="item" class="item" style="flex-grow: 1;" />

@@ -1,36 +1,30 @@
-using Unity.Mathematics;
-using Unity.VisualScripting;
-using UnityEngine;
 using UnityEngine.UIElements;
 
 public class Resizer : PointerManipulator
 {
-    private Vector3 m_Start;
     protected bool m_Active;
     private int m_PointerId;
-    private Vector2 m_StartSize;
+    private bool m_IsLeftMouse; 
 
     public Resizer()
     {
         m_PointerId = -1;
-        activators.Add(new ManipulatorActivationFilter { button = UnityEngine.UIElements.MouseButton.LeftMouse });
-        activators.Add(new ManipulatorActivationFilter { button = UnityEngine.UIElements.MouseButton.MiddleMouse });
+        activators.Add(new ManipulatorActivationFilter { button = MouseButton.LeftMouse });
+        activators.Add(new ManipulatorActivationFilter { button = MouseButton.MiddleMouse });
         m_Active = false;
+        m_IsLeftMouse = false;
     }
 
     protected override void RegisterCallbacksOnTarget()
     {
         target.RegisterCallback<PointerDownEvent>(OnPointerDown);
-        target.RegisterCallback<PointerMoveEvent>(OnPointerMove);
         target.RegisterCallback<PointerUpEvent>(OnPointerUp);
         target.RegisterCallback<WheelEvent>(OnWheelMove);
-
     }
 
     protected override void UnregisterCallbacksFromTarget()
     {
         target.UnregisterCallback<PointerDownEvent>(OnPointerDown);
-        target.UnregisterCallback<PointerMoveEvent>(OnPointerMove);
         target.UnregisterCallback<PointerUpEvent>(OnPointerUp);
         target.UnregisterCallback<WheelEvent>(OnWheelMove);
     }
@@ -45,40 +39,37 @@ public class Resizer : PointerManipulator
 
         if (CanStartManipulation(e))
         {
-            m_Start = e.localPosition;
-            m_StartSize = target.layout.size;
             m_PointerId = e.pointerId;
             m_Active = true;
+            m_IsLeftMouse = e.button == (int)MouseButton.LeftMouse;
             target.CapturePointer(m_PointerId);
             e.StopPropagation();
         }
     }
 
-    protected void OnPointerMove(PointerMoveEvent e)
+    protected void OnWheelMove(WheelEvent e)
     {
-        // if (!m_Active || !target.HasPointerCapture(m_PointerId))
-        // {
-        //     return;
-        // }
-
-        // Vector2 diff = e.localPosition - m_Start;
-        // target.style.height = m_StartSize.y + diff.y;
-        // target.style.width = m_StartSize.x + diff.x;
-
-        // e.StopPropagation();
-    }
-
-        protected void OnWheelMove(WheelEvent e)
-    {
-        if (!m_Active || !target.HasPointerCapture(m_PointerId))
+        if (!m_Active || !target.HasPointerCapture(m_PointerId) || !m_IsLeftMouse)
         {
             return;
         }
 
-        Debug.Log(e.delta);
-        Vector2 diff = math.sign(e.delta.y) * new Vector3(1,1,0) - m_Start;
-        target.style.height = target.style.height.ConvertTo<float>() * math.sign(e.delta.y) * 1.2f;// m_StartSize.y + diff.y;
-        target.style.width = target.style.width.ConvertTo<float>() * math.sign(e.delta.y) * 1.2f;//m_StartSize.x + diff.x;
+        float currentWidth = target.style.width.value.value > 0 ? target.style.width.value.value : target.layout.width;
+        float currentHeight = target.style.height.value.value > 0 ? target.style.height.value.value : target.layout.height;
+
+        float scaleFactor = 1.1f;
+        float delta = e.delta.y;
+
+        if (delta < 0)
+        {
+            target.style.width = currentWidth * scaleFactor;
+            target.style.height = currentHeight * scaleFactor;
+        }
+        else if (delta > 0)
+        {
+            target.style.width = currentWidth / scaleFactor;
+            target.style.height = currentHeight / scaleFactor;
+        }
 
         e.StopPropagation();
     }
@@ -91,6 +82,7 @@ public class Resizer : PointerManipulator
         }
 
         m_Active = false;
+        m_IsLeftMouse = false;
         target.ReleasePointer(m_PointerId);
         m_PointerId = -1;
         e.StopPropagation();

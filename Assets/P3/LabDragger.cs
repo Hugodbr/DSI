@@ -11,6 +11,6 @@ public class Lab3Dragger : MonoBehaviour
 
         // item.AddManipulator(new Lab3Manipulator());
         item.AddManipulator(new Resizer());
-        // item.AddManipulator(new Dragger());
+        item.AddManipulator(new Dragger());
     }
 }
