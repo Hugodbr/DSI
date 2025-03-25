@@ -1,0 +1,15 @@
+.caja {
+    background-color: rgb(102, 155, 233);
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    flex-shrink: 0;
+    width: 50%;
+    height: 50%;
+    flex-basis: 50%;
+}

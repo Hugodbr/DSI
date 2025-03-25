@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <ui:VisualElement name="Contenedor" style="flex-grow: 1; flex-direction: row; flex-wrap: wrap; flex-basis: 50%;">
+        <ui:VisualElement name="Caja1" class="caja" style="flex-grow: 1;" />
+        <ui:VisualElement name="Caja2" class="caja" style="flex-grow: 1;" />
+        <ui:VisualElement name="Caja3" class="caja" style="flex-grow: 1;" />
+        <ui:VisualElement name="Caja4" class="caja" style="flex-grow: 1;" />
+    </ui:VisualElement>
+</ui:UXML>
