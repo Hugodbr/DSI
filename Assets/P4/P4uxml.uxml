@@ -1,9 +1,9 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="ContenedorCajas" src="project://database/Assets/P4/ContenedorCajas.uxml?fileID=9197481963319205126&amp;guid=8d4b6c1adc3be124a9b145a3f3f0b447&amp;type=3#ContenedorCajas" />
     <Style src="project://database/Assets/P4/P4uss.uss?fileID=7433441132597879392&amp;guid=f4bc308d01055a84d9ab78c5064095ba&amp;type=3#P4uss" />
-    <ui:VisualElement name="Contenedor" style="flex-grow: 1; flex-direction: row; flex-wrap: wrap; flex-basis: 50%;">
-        <ui:VisualElement name="Caja1" class="caja" style="flex-grow: 1;" />
-        <ui:VisualElement name="Caja2" class="caja" style="flex-grow: 1;" />
-        <ui:VisualElement name="Caja3" class="caja" style="flex-grow: 1;" />
-        <ui:VisualElement name="Caja4" class="caja" style="flex-grow: 1;" />
+    <ui:VisualElement name="VisualElement" style="flex-grow: 1; flex-direction: row; flex-wrap: wrap;">
+        <ui:Instance template="ContenedorCajas" name="ContenedorCajas" style="flex-grow: 1; width: 50%; height: 50%;" />
+        <ui:Instance template="ContenedorCajas" name="ContenedorCajas" style="flex-grow: 1; width: 50%; height: 50%;" />
+        <ui:VisualElement name="Info" style="flex-grow: 1; height: 50%; width: 50%;" />
     </ui:VisualElement>
 </ui:UXML>

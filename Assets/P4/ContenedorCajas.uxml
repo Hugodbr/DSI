@@ -1,4 +1,5 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/P4/P4uss.uss?fileID=7433441132597879392&amp;guid=f4bc308d01055a84d9ab78c5064095ba&amp;type=3#P4uss" />
     <ui:VisualElement name="Contenedor" style="flex-grow: 1; flex-direction: row; flex-wrap: wrap; flex-basis: 50%;">
         <ui:VisualElement name="Caja1" class="caja" style="flex-grow: 1;" />
         <ui:VisualElement name="Caja2" class="caja" style="flex-grow: 1;" />
