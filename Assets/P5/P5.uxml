@@ -1,0 +1,39 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="ContenedorCajas" src="project://database/Assets/P4/ContenedorCajas.uxml?fileID=9197481963319205126&amp;guid=8d4b6c1adc3be124a9b145a3f3f0b447&amp;type=3#ContenedorCajas" />
+    <ui:VisualElement name="contenedor" style="flex-grow: 0; flex-direction: row; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); background-color: rgb(0, 0, 0); flex-shrink: 0;">
+        <ui:VisualElement name="izda" style="flex-grow: 0; flex-shrink: 0; width: 30%;">
+            <ui:VisualElement name="header" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/P5/assets/Snipaste_2025-03-27_15-50-50.png?fileID=2800000&amp;guid=691d3f4a88b33344690b5077742484cc&amp;type=3#Snipaste_2025-03-27_15-50-50&quot;);" />
+            <ui:VisualElement name="body" style="flex-grow: 1; background-color: rgb(102, 155, 233);">
+                <ui:TextField picking-mode="Ignore" label="Nombre" value="Input nombre" name="inputNombre" style="font-size: 31px; background-color: rgb(255, 204, 204);" />
+                <ui:TextField picking-mode="Ignore" label="Apellido" value="Input apellido" name="inputApellido" style="font-size: 30px; background-color: rgb(255, 204, 204);" />
+            </ui:VisualElement>
+            <ui:VisualElement name="footer" style="flex-grow: 1; background-color: rgb(102, 155, 233);" />
+        </ui:VisualElement>
+        <ui:VisualElement name="dcha" style="flex-grow: 0; align-items: flex-start; background-color: rgb(0, 0, 0); flex-direction: column; flex-wrap: nowrap; display: flex; visibility: visible; flex-shrink: 1; justify-content: flex-start; align-self: auto; width: 80%;">
+            <ui:VisualElement name="P4uxml" style="height: auto; width: auto; flex-grow: 1; flex-direction: column;">
+                <Style src="project://database/Assets/P4/P4uss.uss?fileID=7433441132597879392&amp;guid=f4bc308d01055a84d9ab78c5064095ba&amp;type=3#P4uss" />
+                <ui:VisualElement name="VisualElement" style="flex-grow: 1; flex-direction: row; flex-wrap: wrap; width: 100%;">
+                    <ui:VisualElement name="ContenedorCajas" style="flex-grow: 1; width: 50%; height: 50%;">
+                        <Style src="project://database/Assets/P4/P4uss.uss?fileID=7433441132597879392&amp;guid=f4bc308d01055a84d9ab78c5064095ba&amp;type=3#P4uss" />
+                        <ui:VisualElement name="Contenedor" style="flex-grow: 1; flex-direction: row; flex-wrap: wrap; flex-basis: 50%;">
+                            <ui:VisualElement name="Caja1" class="caja" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/P5/assets/luigi.png?fileID=2800000&amp;guid=3c62039821b34b740810d1e81ce83f42&amp;type=3#luigi&quot;);" />
+                            <ui:VisualElement name="Caja2" class="caja" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/P5/assets/m.png?fileID=2800000&amp;guid=330234feda00ee24fae642c1228fd5b8&amp;type=3#m&quot;);" />
+                            <ui:VisualElement name="Caja3" class="caja" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/P5/assets/link.png?fileID=2800000&amp;guid=1170965a19399154f88b561e048c686c&amp;type=3#link&quot;);" />
+                            <ui:VisualElement name="Caja4" class="caja" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/P5/assets/dk.png?fileID=2800000&amp;guid=1e7b8464765e34e4a8a7a5390f5f9c27&amp;type=3#dk&quot;);" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:Instance template="ContenedorCajas" name="ContenedorCajas" style="flex-grow: 1; width: 50%; height: 50%;" />
+                    <ui:VisualElement name="Info" style="flex-grow: 1; height: 50%; width: 50%; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); background-color: rgb(93, 200, 96); border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; border-left-width: 3px;">
+                        <Lab4 name="Lab4" />
+                        <ui:VisualElement name="VisualElement" style="flex-grow: 1;">
+                            <ui:Label tabindex="-1" text="Nombre" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Nombre" style="font-size: 103px;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement style="flex-grow: 1;">
+                            <ui:Label tabindex="-1" text="Apellido" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Apellido" style="font-size: 100px;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
