@@ -4,8 +4,8 @@
     <ui:VisualElement name="VisualElement" style="flex-grow: 1; flex-direction: row; flex-wrap: wrap;">
         <ui:Instance template="ContenedorCajas" name="ContenedorCajas" style="flex-grow: 1; width: 50%; height: 50%;" />
         <ui:Instance template="ContenedorCajas" name="ContenedorCajas" style="flex-grow: 1; width: 50%; height: 50%;" />
-        <ui:VisualElement name="Info" style="flex-grow: 1; height: 50%; width: 50%; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); background-color: rgb(93, 200, 96); border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; border-left-width: 3px;">
-            <Lab4 name="Lab4" />
+        <ui:VisualElement name="Info" style="flex-grow: 1; height: 50%; width: 50%; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); background-color: rgb(93, 200, 96); border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; border-left-width: 3px; flex-direction: row; flex-wrap: wrap; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;">
+            <Lab4 name="Lab4" estado="2" style="flex-grow: 1; flex-direction: row; translate: 25% 25%;" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
