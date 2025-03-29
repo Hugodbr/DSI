@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 
 namespace Lab6_namespace
@@ -39,8 +38,8 @@ namespace Lab6_namespace
         }
 
         [SerializeField]
-        private StyleBackground imagen;
-        public StyleBackground Imagen
+        private string imagen;
+        public string Imagen
         {
             get { return imagen; }
             set
@@ -52,7 +51,7 @@ namespace Lab6_namespace
             }
         }
 
-        public Individuo(string nombre, string apellido, StyleBackground imagen){
+        public Individuo(string nombre, string apellido, string imagen){
             this.nombre = nombre;
             this.apellido = apellido;
             this.imagen = imagen;

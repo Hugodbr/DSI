@@ -16,20 +16,17 @@ namespace Lab6_namespace
         VisualElement contenedor_dcha;
         TextField input_nombre;
         TextField input_apellido;
-        VisualElement input_imagen;
         Individuo individuoSelec;
-        StyleBackground imagenSelec;
         List<VisualElement> imagenes;
+        string imagenSelec;
 
-        List<Individuo> listIndividuos = new List<Individuo>();
+        List<Individuo> listIndividuos;
 
         private void OnEnable()
         {
-
-
-
-
             VisualElement root = GetComponent<UIDocument>().rootVisualElement;
+
+            listIndividuos = Basedatos.getData();
 
             contenedor_dcha = root.Q<VisualElement>("dcha");
             input_nombre = root.Q<TextField>("inputNombre");
@@ -40,17 +37,17 @@ namespace Lab6_namespace
             imagenes = root.Q<VisualElement>("Contenedor").Children().ToList();
             LoadImages(ref imagenes);
 
-            imagenSelec = imagenes.First().style.backgroundImage;
+            imagenSelec = imagenes.First().name;
+            CajasBordeRojo(imagenes.First());
 
             botonCrear.RegisterCallback<ClickEvent>(NuevaTarjeta);
             botonGuardar.RegisterCallback<ClickEvent>(SaveIndividuosToFile);
             input_nombre.RegisterCallback<ChangeEvent<string>>(CambioNombre);
             input_apellido.RegisterCallback<ChangeEvent<string>>(CambioApellido);
             contenedor_dcha.RegisterCallback<ClickEvent>(SeleccionTarjeta);
-            imagenes.ForEach(caja => {
-                caja.RegisterCallback<ClickEvent>(SeleccionImagen);
-                Debug.Log(caja);
-                });
+            imagenes.ForEach(caja => caja.RegisterCallback<ClickEvent>(SeleccionImagen));
+
+            InitializeUI();
         }
 
         void SeleccionTarjeta(ClickEvent e)
@@ -89,9 +86,7 @@ namespace Lab6_namespace
                 individuoSelec = individuo;
 
                 listIndividuos.Add(individuo);
-                string listaToJson = JsonHelper.ToJson(listIndividuos, true);
-                Debug.Log(listaToJson);
-                Debug.Log(Application.persistentDataPath);
+                JsonHelper.ToJson(listIndividuos, true);
             }
         }
 
@@ -135,7 +130,12 @@ namespace Lab6_namespace
         {
             string json = JsonHelper.ToJson(listIndividuos, true);
             string filePath = Path.Combine(Application.persistentDataPath, "individuos.json");
-            
+
+            if (File.Exists(filePath)) {
+                File.Delete(filePath); 
+                Debug.Log("File deleted.");
+            }
+
             File.WriteAllText(filePath, json);
             Debug.Log($"Saved to: {filePath}");
         }
@@ -143,7 +143,7 @@ namespace Lab6_namespace
         void SeleccionImagen(ClickEvent evt)
         {
             VisualElement caja = evt.currentTarget as VisualElement;
-            imagenSelec = caja.resolvedStyle.backgroundImage;
+            imagenSelec = caja.name;
             CajasBordeNegro();
             CajasBordeRojo(caja);
 
@@ -174,10 +174,30 @@ namespace Lab6_namespace
 
         void CajasBordeRojo(VisualElement caja)
         {
-            caja.style.borderBottomColor = Color.red;
-            caja.style.borderRightColor = Color.red;
-            caja.style.borderTopColor = Color.red;
-            caja.style.borderLeftColor = Color.red;
+            caja.style.borderBottomColor = Color.green;
+            caja.style.borderRightColor = Color.green;
+            caja.style.borderTopColor = Color.green;
+            caja.style.borderLeftColor = Color.green;
+        }
+
+        void InitializeUI()
+        {
+            listIndividuos.ForEach(indv =>
+                {
+                    VisualTreeAsset plantilla = Resources.Load<VisualTreeAsset>("Tarjeta");
+                    VisualElement tarjetaPlantilla = plantilla.Instantiate();
+
+                    contenedor_dcha.Add(tarjetaPlantilla);
+                    TarjetasBordeNegro();
+                    TarjetasBordeBlanco(tarjetaPlantilla);
+
+                    Individuo individuo = new Individuo(
+                        indv.Nombre, 
+                        indv.Apellido, 
+                        indv.Imagen
+                    );
+                    Tarjeta tarjeta = new Tarjeta(tarjetaPlantilla, individuo);
+                });
         }
 
     }

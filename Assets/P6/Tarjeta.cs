@@ -31,7 +31,9 @@ namespace Lab6_namespace
         void UpdateUI(){
             nombreLabel.text = mIndividuo.Nombre;
             apellidoLabel.text = mIndividuo.Apellido;
-            imagen.style.backgroundImage = mIndividuo.Imagen;
+
+            var tex = Resources.Load<Texture2D>(mIndividuo.Imagen);
+            imagen.style.backgroundImage = new StyleBackground(tex);
         }
     }
 }

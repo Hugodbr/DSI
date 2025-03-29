@@ -1,25 +1,25 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/P6/buttonstyle.uss?fileID=7433441132597879392&amp;guid=676b19cf65e3a9d458d11671a788bbc9&amp;type=3#buttonstyle" />
     <ui:VisualElement name="main" style="flex-grow: 1; flex-direction: row;">
-        <ui:VisualElement name="izda" style="flex-grow: 1; flex-shrink: 1; width: 782px; flex-direction: column; max-width: 40%;">
+        <ui:VisualElement name="izda" style="flex-grow: 1; flex-shrink: 1; width: 782px; flex-direction: column; max-width: 40%; min-width: 40%;">
             <ui:VisualElement name="header" style="flex-grow: 1; background-image: none; flex-basis: initial; flex-direction: column;">
-                <ui:VisualElement name="Contenedor" picking-mode="Ignore" style="flex-grow: 1; flex-direction: row; flex-wrap: wrap; flex-basis: auto; align-items: stretch; -unity-text-align: upper-left; white-space: normal; max-width: none; min-width: auto; align-self: auto; justify-content: flex-start;">
+                <ui:VisualElement name="Contenedor" picking-mode="Ignore" style="flex-grow: 1; flex-direction: row; flex-wrap: wrap; flex-basis: auto; align-items: stretch; -unity-text-align: upper-left; white-space: normal; max-width: none; min-width: auto; align-self: auto; justify-content: flex-start; height: 97px;">
                     <ui:VisualElement name="caja1" class="caja" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/P5/assets/luigi.png?fileID=2800000&amp;guid=3c62039821b34b740810d1e81ce83f42&amp;type=3#luigi&quot;);" />
                     <ui:VisualElement name="caja2" class="caja" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/P5/assets/m.png?fileID=2800000&amp;guid=330234feda00ee24fae642c1228fd5b8&amp;type=3#m&quot;);" />
                     <ui:VisualElement name="caja3" class="caja" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/P5/assets/link.png?fileID=2800000&amp;guid=1170965a19399154f88b561e048c686c&amp;type=3#link&quot;);" />
                     <ui:VisualElement name="caja4" class="caja" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/P5/assets/dk.png?fileID=2800000&amp;guid=1e7b8464765e34e4a8a7a5390f5f9c27&amp;type=3#dk&quot;);" />
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement name="body" style="flex-grow: 1; background-color: rgb(102, 155, 233); padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 8px;">
+            <ui:VisualElement name="body" style="flex-grow: 1; background-color: rgb(102, 155, 233); padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 8px; border-top-width: 15px; border-right-width: 15px; border-bottom-width: 15px; border-left-width: 15px;">
                 <ui:TextField picking-mode="Ignore" label="Nombre" value="Input nombre" name="inputNombre" style="font-size: 31px; background-color: rgb(255, 204, 204);" />
                 <ui:TextField picking-mode="Ignore" label="Apellido" value="Input apellido" name="inputApellido" style="font-size: 30px; background-color: rgb(255, 204, 204);" />
-                <ui:Toggle label="Modificar" name="modificar" style="background-color: rgba(56, 56, 56, 0); font-size: 32px;" />
+                <ui:Toggle label="Modificar" name="modificar" style="background-color: rgb(255, 95, 95); font-size: 32px; align-self: center; justify-content: flex-start; width: 213px; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; border-left-width: 3px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); margin-top: 12px; margin-right: 12px; margin-bottom: 12px; margin-left: 12px;" />
             </ui:VisualElement>
             <ui:VisualElement name="footer" style="flex-grow: 1; background-color: rgb(102, 155, 233); flex-direction: column-reverse; align-items: center; align-self: auto; justify-content: flex-end;">
                 <ui:Button text="Guardar" parse-escape-sequences="true" display-tooltip-when-elided="true" name="guardar" style="font-size: 43px; -unity-text-align: middle-center; align-self: center;" />
                 <ui:Button text="Crear" parse-escape-sequences="true" display-tooltip-when-elided="true" name="crear" class="botton" style="font-size: 43px; -unity-text-align: middle-center; align-self: center; margin-top: 24px; margin-right: 24px; margin-bottom: 24px; margin-left: 24px;" />
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="dcha" style="flex-grow: 1; flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: flex-start; padding-top: 19px; padding-right: 19px; padding-bottom: 19px; padding-left: 19px; background-color: rgb(0, 39, 255);" />
+        <ui:VisualElement name="dcha" style="flex-grow: 1; flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: flex-start; padding-top: 19px; padding-right: 19px; padding-bottom: 19px; padding-left: 19px; background-color: rgb(21, 34, 101);" />
     </ui:VisualElement>
 </ui:UXML>
