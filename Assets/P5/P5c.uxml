@@ -1,0 +1,58 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/P5/tarjetaStyle.uss?fileID=7433441132597879392&amp;guid=38aa8c598541702468540bf041638a6c&amp;type=3#tarjetaStyle" />
+    <ui:VisualElement name="contenedor" style="flex-grow: 1; flex-direction: row; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); background-color: rgb(0, 0, 0); flex-shrink: 0;">
+        <ui:VisualElement name="izda" style="flex-grow: 0; flex-shrink: 0; width: 40%;">
+            <ui:VisualElement name="header" style="flex-grow: 1; background-image: none;">
+                <ui:VisualElement name="Contenedor" style="flex-grow: 1; flex-direction: row; flex-wrap: wrap; flex-basis: initial; align-items: stretch; -unity-text-align: upper-left; white-space: normal;">
+                    <ui:VisualElement name="Caja1" class="caja" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/P5/assets/luigi.png?fileID=2800000&amp;guid=3c62039821b34b740810d1e81ce83f42&amp;type=3#luigi&quot;);" />
+                    <ui:VisualElement name="Caja2" class="caja" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/P5/assets/m.png?fileID=2800000&amp;guid=330234feda00ee24fae642c1228fd5b8&amp;type=3#m&quot;);" />
+                    <ui:VisualElement name="Caja3" class="caja" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/P5/assets/link.png?fileID=2800000&amp;guid=1170965a19399154f88b561e048c686c&amp;type=3#link&quot;);" />
+                    <ui:VisualElement name="Caja4" class="caja" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/P5/assets/dk.png?fileID=2800000&amp;guid=1e7b8464765e34e4a8a7a5390f5f9c27&amp;type=3#dk&quot;);" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="body" style="flex-grow: 1; background-color: rgb(102, 155, 233);">
+                <ui:TextField picking-mode="Ignore" label="Nombre" value="Input nombre" name="inputNombre" style="font-size: 31px; background-color: rgb(255, 204, 204);" />
+                <ui:TextField picking-mode="Ignore" label="Apellido" value="Input apellido" name="inputApellido" style="font-size: 30px; background-color: rgb(255, 204, 204);" />
+            </ui:VisualElement>
+            <ui:VisualElement name="footer" style="flex-grow: 1; background-color: rgb(102, 155, 233);" />
+        </ui:VisualElement>
+        <ui:VisualElement name="dcha" style="flex-grow: 1; align-items: flex-start; background-color: rgb(0, 0, 0); flex-direction: row; flex-wrap: nowrap; display: flex; visibility: visible; flex-shrink: 1; justify-content: flex-end; align-self: auto; width: 80%;">
+            <ui:VisualElement name="Tarjeta1" class="tarjeta" style="flex-grow: 1;">
+                <ui:VisualElement name="image" style="flex-grow: 1; height: 50%; background-image: url(&quot;project://database/Assets/P5/assets/link.png?fileID=2800000&amp;guid=1170965a19399154f88b561e048c686c&amp;type=3#link&quot;);" />
+                <ui:VisualElement name="mid" style="flex-grow: 1;">
+                    <ui:Label tabindex="-1" text="Nombre" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Nombre" style="font-size: 50px;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="bottom" style="flex-grow: 1;">
+                    <ui:Label tabindex="-1" text="Apellido" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Apellido" style="font-size: 50px;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="Tarjeta2" class="tarjeta" style="flex-grow: 1; align-items: stretch;">
+                <ui:VisualElement name="image" style="flex-grow: 1; height: 50%; background-image: url(&quot;project://database/Assets/P5/assets/link.png?fileID=2800000&amp;guid=1170965a19399154f88b561e048c686c&amp;type=3#link&quot;);" />
+                <ui:VisualElement name="mid" style="flex-grow: 1;">
+                    <ui:Label tabindex="-1" text="Nombre" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Nombre" style="font-size: 50px;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="bottom" style="flex-grow: 1;">
+                    <ui:Label tabindex="-1" text="Apellido" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Apellido" style="font-size: 50px;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="Tarjeta3" class="tarjeta" style="flex-grow: 1; align-items: stretch;">
+                <ui:VisualElement name="image" style="flex-grow: 1; height: 50%; background-image: url(&quot;project://database/Assets/P5/assets/link.png?fileID=2800000&amp;guid=1170965a19399154f88b561e048c686c&amp;type=3#link&quot;);" />
+                <ui:VisualElement name="mid" style="flex-grow: 1;">
+                    <ui:Label tabindex="-1" text="Nombre" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Nombre" style="font-size: 50px;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="bottom" style="flex-grow: 1;">
+                    <ui:Label tabindex="-1" text="Apellido" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Apellido" style="font-size: 50px;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="Tarjeta4" class="tarjeta" style="flex-grow: 1; align-items: stretch;">
+                <ui:VisualElement name="image" style="flex-grow: 1; height: 50%; background-image: url(&quot;project://database/Assets/P5/assets/link.png?fileID=2800000&amp;guid=1170965a19399154f88b561e048c686c&amp;type=3#link&quot;);" />
+                <ui:VisualElement name="mid" style="flex-grow: 1;">
+                    <ui:Label tabindex="-1" text="Nombre" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Nombre" style="font-size: 50px;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="bottom" style="flex-grow: 1;">
+                    <ui:Label tabindex="-1" text="Apellido" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Apellido" style="font-size: 50px;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

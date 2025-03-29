@@ -1,0 +1,23 @@
+.tarjeta {
+    background-color: rgb(197, 0, 0);
+    min-width: 100px;
+    max-width: 50%;
+    flex-grow: 1;
+    flex-direction: column;
+    align-self: auto;
+    flex-basis: 50%;
+    width: initial;
+    max-height: 50%;
+    margin-top: 3px;
+    margin-right: 3px;
+    margin-bottom: 3px;
+    margin-left: 3px;
+    border-left-color: rgb(255, 255, 255);
+    border-right-color: rgb(255, 255, 255);
+    border-top-color: rgb(255, 255, 255);
+    border-bottom-color: rgb(255, 255, 255);
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+}
