@@ -1,0 +1,3 @@
+.caja {
+    min-width: 100px;
+}

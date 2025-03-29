@@ -1,0 +1,13 @@
+.botton {
+    width: 50%;
+    align-self: center;
+    align-items: stretch;
+}
+
+.caja {
+    border-bottom-width: 20px;
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+}

@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="Tarjeta" picking-mode="Ignore" class="tarjeta" style="flex-grow: 0; flex-basis: 400px; width: 200px; height: 300px; flex-shrink: 0; padding-top: 2px; padding-right: 2px; padding-bottom: 2px; padding-left: 2px; border-top-width: 4px; border-right-width: 4px; border-bottom-width: 4px; border-left-width: 4px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">
+        <ui:VisualElement name="image" picking-mode="Ignore" style="flex-grow: 1; height: 50%; background-image: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=8228938214290033325&amp;guid=eeed7b50327cc06418d36b4604c102e5&amp;type=3#console.erroricon&quot;); background-color: rgb(0, 0, 0);" />
+        <ui:VisualElement name="mid" picking-mode="Ignore" style="flex-grow: 1; border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); background-color: rgb(255, 255, 255);">
+            <ui:Label tabindex="-1" text="Nombre" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Nombre" picking-mode="Ignore" style="font-size: 30px;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="bottom" picking-mode="Ignore" style="flex-grow: 1; background-color: rgb(255, 255, 255);">
+            <ui:Label tabindex="-1" text="Apellido" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Apellido" picking-mode="Ignore" style="font-size: 30px;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
