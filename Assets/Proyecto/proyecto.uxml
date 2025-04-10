@@ -1,9 +1,20 @@
-<?xml version="1.0" encoding="utf-8"?>
-<engine:UXML
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:engine="UnityEngine.UIElements"
-    xmlns:editor="UnityEditor.UIElements"
-    xsi:noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd"
->
-    
-</engine:UXML>
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Proyecto/proyectoStyle.uss?fileID=7433441132597879392&amp;guid=80a8dc6ec8951514789ebc99b7562416&amp;type=3#proyectoStyle" />
+    <ui:VisualElement name="background" style="flex-grow: 1; cursor: initial; background-image: url(&quot;project://database/Assets/Proyecto/Art/UI/BackgroundBlurred/Sprite_Background_Blurred.png?fileID=2800000&amp;guid=8890f5b3549cb4d3982c0f020064c90a&amp;type=3#Sprite_Background_Blurred&quot;); -unity-background-image-tint-color: rgb(255, 254, 0);">
+        <ui:VisualElement name="navTabs" class="display" style="flex-grow: 0; height: 20%; flex-basis: 15%; flex-shrink: 0; margin-top: 5%; flex-direction: row;">
+            <ui:VisualElement name="tab1" class="tabButton" style="flex-grow: 1;">
+                <ui:Label tabindex="-1" text="Character" parse-escape-sequences="true" display-tooltip-when-elided="true" class="tabText" />
+            </ui:VisualElement>
+            <ui:VisualElement name="tab2" class="tabButton" style="flex-grow: 1;" />
+            <ui:VisualElement name="tab3" class="tabButton" style="flex-grow: 1;" />
+            <ui:VisualElement name="tab4" class="tabButton" style="flex-grow: 1;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="display" class="display" style="flex-direction: row;">
+            <ui:VisualElement name="tabMenu1" style="flex-grow: 1; flex-direction: row;">
+                <ui:VisualElement name="menu" style="flex-grow: 1;" />
+                <ui:VisualElement name="info" style="flex-grow: 1;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="footer" style="flex-grow: 0; flex-basis: 10%; flex-shrink: 0;" />
+    </ui:VisualElement>
+</ui:UXML>
