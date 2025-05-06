@@ -20,13 +20,12 @@ public class WeaponSelectorManipulator : PointerManipulator
         m_weapon_images[3] = Resources.Load<Texture2D>("Weapon_Shield");
         m_weapon_images[4] = Resources.Load<Texture2D>("Weapon_Staff");
         m_weapon_images[5] = Resources.Load<Texture2D>("Weapon_Sword");
-
-        target.style.backgroundImage = m_weapon_images[0]; // Sets the Axe A as starting weapon
     }
 
     protected override void RegisterCallbacksOnTarget()
     {
         target.RegisterCallback<WheelEvent>(OnWheelMove);
+        target.style.backgroundImage = m_weapon_images[0]; // Sets the Axe A as starting weapon
     }
 
     protected override void UnregisterCallbacksFromTarget()

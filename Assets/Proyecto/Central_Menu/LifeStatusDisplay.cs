@@ -61,7 +61,7 @@ public class LifeStatusDisplay : VisualElement
 
     public new class UxmlTraits : VisualElement.UxmlTraits
     {
-        UxmlIntAttributeDescription myEstado = new UxmlIntAttributeDescription { name = "life points", defaultValue = 0 };
+        UxmlIntAttributeDescription myEstado = new UxmlIntAttributeDescription { name = "life-points", defaultValue = 0 };
 
         public override void Init(VisualElement ve, IUxmlAttributes bag, CreationContext cc)
         {
