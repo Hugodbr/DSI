@@ -4,31 +4,37 @@ using UnityEngine;
 namespace ProyectoMain
 {
     [Serializable]
-    public class SavedGame
+    public class SaveGame
     {
-
-        public event Action Cambio;
-
         [SerializeField]
         private string name;
         public string Name
         {
             get { return name; }
-            set
-            {
-                if (value != name){
-                    name = value;
-                    Cambio?.Invoke();
-                }
-            }
+            set { name = value; } 
         }
 
         [SerializeField]
-        private DateTime timestamp;
-        public DateTime Timestamp
+        private PlayerInfo playerInfo;
+        public PlayerInfo PlayerInfo
         {
-            get { return timestamp; }
-            set { timestamp = value; }
+            get { return playerInfo; }
+            set { playerInfo = value; }
+        }
+
+        [SerializeField]
+        private Settings settings;
+        public Settings Settings
+        {
+            get { return settings; }
+            set { settings = value; }
+        }
+
+        public SaveGame(string name, PlayerInfo playerInfo, Settings settings)
+        {
+            this.name = name;
+            this.playerInfo = playerInfo;
+            this.settings = settings;
         }
     }
 }

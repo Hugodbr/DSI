@@ -7,22 +7,25 @@ namespace ProyectoMain
 {
     public class Basedatos
     {
-        public static List<Individuo> getData()
+        private static readonly string SavedGamesPath = Path.Combine(Application.persistentDataPath, "saved_games.json");
+
+        public static List<SaveGame> GetSavedGames()
         {
-            string filePath = Path.Combine(Application.persistentDataPath, "individuos.json");
-
-            List<Individuo> datos = new List<Individuo>();
-
-            if (File.Exists(filePath))
+            if (File.Exists(SavedGamesPath))
             {
-                string json = File.ReadAllText(filePath);
-                datos = JsonHelper.FromJson<Individuo>(json);
+                string json = File.ReadAllText(SavedGamesPath);
+                return JsonHelper.FromJson<SaveGame>(json);
             }
-            else
-            {
-                Debug.Log("No saved data found.");
-            }
-            return datos;
+
+            // empty list
+            return new List<SaveGame>();
         }
+
+        public static void SaveSavedGames(List<SaveGame> savedGames)
+        {
+            string json = JsonHelper.ToJson(savedGames, true);
+            File.WriteAllText(SavedGamesPath, json);
+        }
+
     }
 }

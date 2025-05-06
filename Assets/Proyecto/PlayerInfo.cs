@@ -23,8 +23,8 @@ namespace ProyectoMain
         }
 
         [SerializeField]
-        private string weapon;
-        public string Weapon
+        private int weapon;
+        public int Weapon
         {
             get { return weapon; }
             set
@@ -50,7 +50,7 @@ namespace ProyectoMain
             }
         }
 
-        public PlayerInfo(string name, string weapon, int life){
+        public PlayerInfo(string name, int weapon, int life){
             this.name = name;
             this.weapon = weapon;
             this.life = life;

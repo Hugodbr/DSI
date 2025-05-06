@@ -7,30 +7,28 @@ namespace ProyectoMain
 {
     public static class JsonHelper
     {
-        public static List<Individuo> FromJson<Individuo>(string json)
+        public static List<T> FromJson<T>(string json)
         {
-            ListaIndividuo<Individuo> listaIndividuo = JsonUtility.FromJson<ListaIndividuo<Individuo>>(json);
-            return listaIndividuo.Individuos;
+            ListaWrapper<T> wrapper = JsonUtility.FromJson<ListaWrapper<T>>(json);
+            return wrapper.Items;
         }
 
-        public static string ToJson<Individuo>(List<Individuo> lista)
+        public static string ToJson<T>(List<T> list)
         {
-            ListaIndividuo<Individuo> listaIndividuo = new ListaIndividuo<Individuo>();
-            listaIndividuo.Individuos = lista;
-            return JsonUtility.ToJson(listaIndividuo);
+            ListaWrapper<T> wrapper = new ListaWrapper<T> { Items = list };
+            return JsonUtility.ToJson(wrapper);
         }
 
-        public static string ToJson<Individuo>(List<Individuo> lista, bool prettyPrint)
+        public static string ToJson<T>(List<T> list, bool prettyPrint)
         {
-            ListaIndividuo<Individuo> listaIndividuo = new ListaIndividuo<Individuo>();
-            listaIndividuo.Individuos = lista;
-            return JsonUtility.ToJson(listaIndividuo, prettyPrint);
+            ListaWrapper<T> wrapper = new ListaWrapper<T> { Items = list };
+            return JsonUtility.ToJson(wrapper, prettyPrint);
         }
 
         [Serializable]
-        private class ListaIndividuo<Individuo>
+        private class ListaWrapper<T>
         {
-            public List<Individuo> Individuos;
+            public List<T> Items;
         }
     }
 }
