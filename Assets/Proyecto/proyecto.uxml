@@ -12,7 +12,7 @@
         <ui:VisualElement name="display" class="display" style="flex-direction: row;">
             <ui:VisualElement name="tabMenu1" style="flex-grow: 1; flex-direction: row;">
                 <ui:VisualElement name="menu" style="flex-grow: 1;" />
-                <ui:VisualElement name="info" style="flex-grow: 1;" />
+                <ui:VisualElement name="info" class="weaponSelectorBox" style="flex-grow: 1;" />
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="footer" style="flex-grow: 0; flex-basis: 10%; flex-shrink: 0;" />
