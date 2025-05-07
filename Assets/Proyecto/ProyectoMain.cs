@@ -285,7 +285,7 @@ namespace ProyectoMain
 
         void SaveIndividuosToFile(ClickEvent evt)
         {
-            string json = JsonHelper.ToJson(listIndividuos, true);
+            string json = "";// JsonHelper.ToJson(listIndividuos, true);
             string filePath = Path.Combine(Application.persistentDataPath, "individuos.json");
 
             if (File.Exists(filePath)) {

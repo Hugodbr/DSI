@@ -52,3 +52,10 @@
 
 .weaponSelectorBox {
 }
+
+.navigationField {
+    flex-basis: initial;
+    width: auto;
+    max-width: 5%;
+    min-width: 3%;
+}

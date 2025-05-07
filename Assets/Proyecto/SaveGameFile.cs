@@ -21,8 +21,8 @@ namespace ProyectoMain
         }
 
         void UpdateUI(){
-            nameLabel.text = mIndividuo.Nombre;
-            apellidoLabel.text = mIndividuo.Apellido;
+        //    nameLabel.text = mIndividuo.Nombre;
+         //   apellidoLabel.text = mIndividuo.Apellido;
         }
     }
 }
