@@ -12,19 +12,20 @@ namespace ProyectoMain
         VisualElement savefileRoot;
         string name;
 
-        Label nameLabel;
+        Button buttonName;
 
         public SaveGameFile(VisualElement savefileRoot, string name) {
             this.savefileRoot = savefileRoot;
             this.name = name;
-
-            nameLabel = savefileRoot.Q<Label>("FileName");
+            Debug.Log(this.name);
+            buttonName = savefileRoot.Q<Button>("SavedFile");
 
             UpdateUI();
         }
 
         void UpdateUI(){
-            nameLabel.text = name;
+            Debug.Log(name);
+            buttonName.text = name;
         }
     }
 }

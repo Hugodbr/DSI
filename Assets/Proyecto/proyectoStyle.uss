@@ -107,7 +107,7 @@
     letter-spacing: 33px;
 }
 
-.saveFileBtt {
+.savedFileBtt {
     background-color: rgb(0, 0, 0);
     height: 69px;
     border-left-color: rgb(0, 0, 0);

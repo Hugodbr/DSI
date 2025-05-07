@@ -1,3 +1,0 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
-    <ui:Button text="SavedFile" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SavedFile" class="saveFileBtt" />
-</ui:UXML>

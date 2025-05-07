@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.IO;
 using System.Numerics;
+using Unity.VisualScripting;
 
 
 namespace ProyectoMain
@@ -78,7 +79,7 @@ namespace ProyectoMain
             // Save panel elements
             currentGameLabel = savedGamesPanel.Query<Label>("CurrentData"); // To be updated as a game is saved or loaded
             savedGamesContainer = savedGamesPanel.Query<VisualElement>("SavedGamesContainer");
-            savedFiles = savedGamesContainer.Children().ToList(); // elements of saved files with name and date
+            // savedFiles = savedGamesContainer.Children().ToList(); // elements of saved files with name and date
             // Settings panel elements
             settingsVolume = settingsPanel.Query<Slider>("SettingsVolume");
             settingsDifficulty = settingsPanel.Query<DropdownField>("SettingsDifficulty");
@@ -96,7 +97,6 @@ namespace ProyectoMain
             leftNavigationButton = root.Query<Button>("leftButton").First();
 
             // Register callbacks
-            savedFiles.ForEach(file => file.RegisterCallback<ClickEvent>(SelectSavedFile));
             saveGameButton.RegisterCallback<ClickEvent>(NewSaveFile);
             loadGameButton.RegisterCallback<ClickEvent>(LoadSavedFile);
 
@@ -129,10 +129,11 @@ namespace ProyectoMain
                 // Set default data to initialize UI
                 playerInfo = new PlayerInfo("Unnamed character", 0, 2);
                 settings = new Settings(100, "Normal", false);
-                
+
+                currentSaveGame = new SaveGame("", null, null, false);
             }
             else {
-                SaveGame currentSaveGame = savedGames.Find(save => save.Current == true); // gets the marked as current from other session
+                currentSaveGame = savedGames.Find(save => save.Current == true); // gets the marked as current from other session
                 selectedSavedFile = currentSaveGame.Name; // string name of the save file selected by default of the first in the list of saved data
 
                 // Initialize to update UI
@@ -155,7 +156,6 @@ namespace ProyectoMain
         {
             // Debug.Log("InitPanels");
             panels = new VisualElement[3];
-
             currentPanel = 0;
             
             panels[currentPanel] = playerInfoPanel; // Initial panel
@@ -163,7 +163,7 @@ namespace ProyectoMain
             panels[2] = settingsPanel;
 
             DeactivateAllPanels();
-            ActivatePanel(panels[1]);
+            ActivatePanel(panels[currentPanel]);
         }
 
         void InitializeSaveUI() 
@@ -174,9 +174,10 @@ namespace ProyectoMain
                 {
                     VisualTreeAsset saveFileTemplate = Resources.Load<VisualTreeAsset>("SaveFile");
                     VisualElement newSaveFileElement = saveFileTemplate.Instantiate();
+                    InitializeFileElement(newSaveFileElement);
 
                     savedGamesContainer.Add(newSaveFileElement);
-                    SaveCtnrBorderBlack();
+                    SavedFileBorderBlack();
 
                     SaveGame newSaveGame = new SaveGame(
                         save.Name,
@@ -209,7 +210,7 @@ namespace ProyectoMain
             settingsInvertedAxis.value = settings.InvertedAxis;
 
             difficultyChoices = new List<string> { "Easy", "Normal", "Hard", "Brasil" };
-            settingsDifficulty = new DropdownField(difficultyChoices, 1); // 1 = default to "Normal"
+            settingsDifficulty.choices = difficultyChoices;
             settingsDifficulty.value = settings.Difficulty;
         }
 
@@ -218,8 +219,8 @@ namespace ProyectoMain
             VisualElement saveFile = evt.currentTarget as VisualElement;
             selectedSavedFile = saveFile.name;
 
-            SaveCtnrBorderBlack();
-            SaveCntrBorderWhite(saveFile);
+            SavedFileBorderBlack();
+            SavedFileBorderWhite(saveFile);
         }
 
         /// <summary>
@@ -232,10 +233,11 @@ namespace ProyectoMain
         {
             VisualTreeAsset saveFileTemplate = Resources.Load<VisualTreeAsset>("SavedFileTemplate");
             VisualElement newSaveFileElement = saveFileTemplate.Instantiate();
+            InitializeFileElement(newSaveFileElement);
 
             savedGamesContainer.Add(newSaveFileElement);
-            SaveCtnrBorderBlack();
-            SaveCntrBorderWhite(newSaveFileElement);
+            SavedFileBorderBlack();
+            SavedFileBorderWhite(newSaveFileElement);
 
             SaveGame newSaveGame = new SaveGame(
                 playerInfo.Name + " | " + DateTime.Now.ToString(),
@@ -312,9 +314,9 @@ namespace ProyectoMain
         /// <summary>
         /// Change border color of all file elements
         /// </summary>
-        void SaveCtnrBorderBlack()
+        void SavedFileBorderBlack()
         {
-            savedFiles.ForEach(fileElem =>
+            savedGamesContainer.Children().ToList().ForEach(fileElem =>
                 {
                     fileElem.style.borderBottomColor = Color.black;
                     fileElem.style.borderRightColor  = Color.black;
@@ -327,7 +329,7 @@ namespace ProyectoMain
         /// Highlights the selected file element
         /// </summary>
         /// <param name="fileElem"></param>
-        void SaveCntrBorderWhite(VisualElement fileElem)
+        void SavedFileBorderWhite(VisualElement fileElem)
         {
             fileElem.style.borderBottomColor = Color.white;
             fileElem.style.borderRightColor  = Color.white;
@@ -361,6 +363,15 @@ namespace ProyectoMain
 
             DeactivateAllPanels();
             ActivatePanel(panels[currentPanel]);
+        }
+
+        void InitializeFileElement(VisualElement file)
+        {
+            file.style.borderBottomWidth = 4;
+            file.style.borderTopWidth = 4;
+            file.style.borderLeftWidth = 4;
+            file.style.borderRightWidth = 4;
+            file.RegisterCallback<ClickEvent>(SelectSavedFile);
         }
 
     }

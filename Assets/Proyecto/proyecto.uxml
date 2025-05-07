@@ -6,7 +6,7 @@
                 <ui:Button text="&lt;" parse-escape-sequences="true" display-tooltip-when-elided="true" name="leftButton" class="navButton" style="border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0);" />
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="PlayerInfoPanel" style="flex-grow: 1; cursor: initial; background-image: none; -unity-background-image-tint-color: rgba(255, 254, 255, 0); opacity: 1; display: flex;">
+        <ui:VisualElement name="PlayerInfoPanel" style="flex-grow: 1; cursor: initial; background-image: none; -unity-background-image-tint-color: rgba(255, 254, 255, 0); opacity: 1; display: none;">
             <ui:VisualElement name="characterInfo" class="display" style="flex-grow: 0; height: 20%; flex-basis: 15%; flex-shrink: 0; margin-top: 5%; flex-direction: row;">
                 <ui:VisualElement name="characterName" class="tabButton" style="flex-grow: 1; flex-direction: row;">
                     <ui:Label tabindex="-1" text="Character" parse-escape-sequences="true" display-tooltip-when-elided="true" class="tabText" />
@@ -43,7 +43,7 @@
             </ui:VisualElement>
             <ui:VisualElement name="footer" style="flex-grow: 0; flex-basis: 10%; flex-shrink: 0;" />
         </ui:VisualElement>
-        <ui:VisualElement name="SavedGamesPanel" style="flex-grow: 1; cursor: initial; background-image: none; -unity-background-image-tint-color: rgba(255, 254, 255, 0); display: none;">
+        <ui:VisualElement name="SavedGamesPanel" style="flex-grow: 1; cursor: initial; background-image: none; -unity-background-image-tint-color: rgba(255, 254, 255, 0); display: flex;">
             <ui:VisualElement name="menuInfo" class="display" style="flex-grow: 0; height: 20%; flex-basis: 15%; flex-shrink: 0; margin-top: 5%; flex-direction: row;">
                 <ui:VisualElement name="saveTitle" class="tabButton" style="flex-grow: 1;">
                     <ui:Label tabindex="-1" text="SAVES" parse-escape-sequences="true" display-tooltip-when-elided="true" class="tabText" />
@@ -58,11 +58,7 @@
                     <ui:Button text="Save" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SaveGameButton" class="saveLoadBtt" />
                     <ui:Button text="Load selected game data" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LoadGameButton" class="saveLoadBtt" />
                 </ui:VisualElement>
-                <ui:VisualElement name="SavedGamesContainer" style="flex-grow: 1; flex-wrap: wrap; margin-top: 17px;">
-                    <ui:VisualElement name="SavedFileTemplate">
-                        <ui:Button text="SavedFile" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SavedFile" class="saveFileBtt" />
-                    </ui:VisualElement>
-                </ui:VisualElement>
+                <ui:VisualElement name="SavedGamesContainer" style="flex-grow: 1; flex-wrap: wrap; margin-top: 17px;" />
             </ui:VisualElement>
             <ui:VisualElement name="footer" style="flex-grow: 0; flex-basis: 5%; flex-shrink: 0;" />
         </ui:VisualElement>
