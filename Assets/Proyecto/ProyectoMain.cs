@@ -35,7 +35,7 @@ namespace ProyectoMain
 
         Slider settingsVolume;
         DropdownField settingsDifficulty;
-        Toggle settingsInvertAxis;
+        Toggle settingsInvertedAxis;
         List<string> difficultyChoices;
         /// <summary>
         /// Current player info
@@ -81,12 +81,13 @@ namespace ProyectoMain
             settingsPanel = menu.Q<VisualElement>("SettingsPanel");
             playerInfoPanel = menu.Q<VisualElement>("PlayerInfoPanel");
 
-            savedGamesContainer = savedGamesPanel.Q<VisualElement>("SavedGamesContainer"); // ! update or assert child of savedGamesPanel
-            currentGameLabel = savedGamesPanel.Query<Label>("CurrentData");
+            savedGamesContainer = savedGamesPanel.Query<VisualElement>("SavedGamesContainer");
+            currentGameLabel = savedGamesPanel.Query<Label>("CurrentData"); // To be updated as a game is saved or loaded
             savedFiles = savedGamesContainer.Children().ToList(); // elements of saved files with name and date
 
-            settingsVolume = settingsPanel.Q<Slider>("SettingsVolume"); // ! update or assert child of settingsPanel
-            settingsDifficulty = settingsPanel.Query<DropdownField>("SettingsDifficulty"); // ! update or assert child of settingsPanel
+            settingsVolume = settingsPanel.Query<Slider>("SettingsVolume");
+            settingsDifficulty = settingsPanel.Query<DropdownField>("SettingsDifficulty");
+            settingsInvertedAxis = settingsPanel.Query<Toggle>("InvertedAxis");
 
             playerName = playerInfoPanel.Query<TextField>("PlayerName"); // ! update or assert child of playerInfoPanel
             playerLife = playerInfoPanel.Q<VisualElement>("PlayerLife"); // ! update or assert child of playerInfoPanel // VisualElement?
@@ -173,19 +174,19 @@ namespace ProyectoMain
         {
             if (savedGames.Any()) // if there're saved games
             { 
-                savedGames.ForEach(indv => 
+                savedGames.ForEach(save => 
                 {
                     VisualTreeAsset saveFileTemplate = Resources.Load<VisualTreeAsset>("SaveFile");
                     VisualElement newSaveFileElement = saveFileTemplate.Instantiate();
 
                     savedGamesContainer.Add(newSaveFileElement);
                     SaveCtnrBorderBlack();
-                    SaveCntrBorderWhite(newSaveFileElement);
 
                     SaveGame newSaveGame = new SaveGame(
-                        playerInfo.Name + " | " + DateTime.Now.ToString(),
-                        playerInfo,
-                        settings
+                        save.Name,
+                        save.PlayerInfo,
+                        save.Settings,
+                        save.Current
                     );
 
                     SaveGameFile saveFile = new SaveGameFile(newSaveFileElement, newSaveGame.Name);
@@ -209,7 +210,7 @@ namespace ProyectoMain
         void InitializeSettingsUI() 
         {
             settingsVolume.value = settings.Volume;
-            settingsInvertAxis.value = settings.InvertedAxis;
+            settingsInvertedAxis.value = settings.InvertedAxis;
 
             difficultyChoices = new List<string> { "Easy", "Normal", "Hard", "Brasil" };
             settingsDifficulty = new DropdownField(difficultyChoices, 1); // 1 = default to "Normal"
@@ -243,8 +244,13 @@ namespace ProyectoMain
             SaveGame newSaveGame = new SaveGame(
                 playerInfo.Name + " | " + DateTime.Now.ToString(),
                 playerInfo,
-                settings
+                settings,
+                true
             );
+
+            // Updates the current save game loaded
+            currentSaveGame.Current = false;
+            currentSaveGame = newSaveGame;
 
             SaveGameFile saveFile = new SaveGameFile(newSaveFileElement, newSaveGame.Name);
             selectedSavedFile = newSaveGame.Name;
@@ -269,6 +275,9 @@ namespace ProyectoMain
             playerInfo = loadSave.PlayerInfo;
             settings = loadSave.Settings;
             
+            // Update current game loaded
+            currentSaveGame.Current = false;
+            currentSaveGame = loadSave;
             currentGameLabel.text = selectedSavedFile; // updates the current save data display
         }
 

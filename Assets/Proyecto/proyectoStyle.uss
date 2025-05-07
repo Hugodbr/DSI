@@ -94,6 +94,17 @@
     border-top-right-radius: 21px;
     border-bottom-right-radius: 21px;
     border-bottom-left-radius: 21px;
+    border-left-color: rgb(255, 255, 255);
+    border-right-color: rgb(255, 255, 255);
+    border-top-color: rgb(255, 255, 255);
+    border-bottom-color: rgb(255, 255, 255);
+    border-right-width: 3px;
+    border-bottom-width: 3px;
+    border-left-width: 3px;
+    background-color: rgb(118, 118, 118);
+    color: rgb(0, 0, 0);
+    -unity-font-style: bold;
+    letter-spacing: 33px;
 }
 
 .saveFileBtt {
