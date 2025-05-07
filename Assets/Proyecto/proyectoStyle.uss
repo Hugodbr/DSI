@@ -59,3 +59,14 @@
     max-width: 5%;
     min-width: 3%;
 }
+
+.settingField {
+    background-color: rgba(140, 88, 76, 0.55);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    margin-top: 10px;
+    margin-right: 5%;
+    margin-left: 5%;
+}

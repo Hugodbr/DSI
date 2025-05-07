@@ -4,8 +4,8 @@
         <ui:VisualElement name="leftNavigation" class="navigationField" style="flex-grow: 1;">
             <ui:VisualElement name="leftNavButton" style="flex-grow: 1; max-height: 10%; min-height: auto; top: 50%; background-color: rgb(115, 47, 27);" />
         </ui:VisualElement>
-        <ui:VisualElement name="background" style="flex-grow: 1; cursor: initial; background-image: none; -unity-background-image-tint-color: rgba(255, 254, 255, 0);">
-            <ui:VisualElement name="navInfo" class="display" style="flex-grow: 0; height: 20%; flex-basis: 15%; flex-shrink: 0; margin-top: 5%; flex-direction: row;">
+        <ui:VisualElement name="centralMenu" style="flex-grow: 1; cursor: initial; background-image: none; -unity-background-image-tint-color: rgba(255, 254, 255, 0); opacity: 1; display: none;">
+            <ui:VisualElement name="characterInfo" class="display" style="flex-grow: 0; height: 20%; flex-basis: 15%; flex-shrink: 0; margin-top: 5%; flex-direction: row;">
                 <ui:VisualElement name="characterName" class="tabButton" style="flex-grow: 1;">
                     <ui:Label tabindex="-1" text="Sir Wichver" parse-escape-sequences="true" display-tooltip-when-elided="true" class="tabText" style="font-size: 30px;" />
                 </ui:VisualElement>
@@ -18,6 +18,22 @@
                     </ui:VisualElement>
                     <ui:VisualElement name="weaponSelector" class="weaponSelectorBox" style="flex-grow: 1;" />
                 </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="footer" style="flex-grow: 0; flex-basis: 10%; flex-shrink: 0;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="settingsMenu" style="flex-grow: 1; cursor: initial; background-image: none; -unity-background-image-tint-color: rgba(255, 254, 255, 0);">
+            <ui:VisualElement name="menuInfo" class="display" style="flex-grow: 0; height: 20%; flex-basis: 15%; flex-shrink: 0; margin-top: 5%; flex-direction: row;">
+                <ui:VisualElement name="characterName" class="tabButton" style="flex-grow: 1;">
+                    <ui:Label tabindex="-1" text="Settings" parse-escape-sequences="true" display-tooltip-when-elided="true" class="tabText" style="font-size: 30px;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="display" class="display" style="flex-direction: column;">
+                <ui:VisualElement name="volumeField" style="flex-grow: 1; max-height: 17%; min-height: auto;">
+                    <ui:Slider label="      Volume" high-value="100" style="color: rgb(255, 255, 255); margin-right: 5%; margin-left: 5%; margin-top: 8px; -unity-font: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&amp;guid=e3265ab4bf004d28a9537516768c1c75&amp;type=3#LiberationSans&quot;); -unity-font-style: bold;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="controlsField" class="settingField" style="flex-grow: 1;" />
+                <ui:VisualElement name="networkingField" class="settingField" style="flex-grow: 1;" />
+                <ui:VisualElement name="difficultyField" class="settingField" style="flex-grow: 1; margin-bottom: 20px;" />
             </ui:VisualElement>
             <ui:VisualElement name="footer" style="flex-grow: 0; flex-basis: 10%; flex-shrink: 0;" />
         </ui:VisualElement>
