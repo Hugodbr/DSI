@@ -77,18 +77,19 @@ namespace ProyectoMain
             InitData();
 
             // Initialize UI elements references
+            // Panels
             savedGamesPanel = menu.Q<VisualElement>("SavedGamesPanel");
             settingsPanel = menu.Q<VisualElement>("SettingsPanel");
             playerInfoPanel = menu.Q<VisualElement>("PlayerInfoPanel");
-
-            savedGamesContainer = savedGamesPanel.Query<VisualElement>("SavedGamesContainer");
+            // Save panel elements
             currentGameLabel = savedGamesPanel.Query<Label>("CurrentData"); // To be updated as a game is saved or loaded
+            savedGamesContainer = savedGamesPanel.Query<VisualElement>("SavedGamesContainer");
             savedFiles = savedGamesContainer.Children().ToList(); // elements of saved files with name and date
-
+            // Settings panel elements
             settingsVolume = settingsPanel.Query<Slider>("SettingsVolume");
             settingsDifficulty = settingsPanel.Query<DropdownField>("SettingsDifficulty");
             settingsInvertedAxis = settingsPanel.Query<Toggle>("InvertedAxis");
-
+            
             playerName = playerInfoPanel.Query<TextField>("PlayerName"); // ! update or assert child of playerInfoPanel
             playerLife = playerInfoPanel.Q<VisualElement>("PlayerLife"); // ! update or assert child of playerInfoPanel // VisualElement?
             playerWeapon = playerInfoPanel.Q<VisualElement>("PlayerWeapon"); // ! update or assert child of playerInfoPanel // VisualElement?
@@ -139,9 +140,9 @@ namespace ProyectoMain
                 selectedSavedFile = ""; // check if the string is empty. If it is, load button won't work
 
                 // Set default data to initialize UI
-                playerInfo = new PlayerInfo("Unnamed player", 0, 2);
+                playerInfo = new PlayerInfo("Unnamed character", 0, 2);
                 settings = new Settings(100, "Normal", false);
-                // currentSaveGame = 
+                
             }
             else {
                 selectedSavedFile = savedFiles.First().name; // string name of the save file selected by default
