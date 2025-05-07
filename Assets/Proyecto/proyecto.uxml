@@ -3,10 +3,10 @@
     <ui:VisualElement name="Menu" style="flex-grow: 1; flex-direction: row; background-image: url(&quot;project://database/Assets/Proyecto/Art/UI/BackgroundBlurred/Sprite_Background_Blurred.png?fileID=2800000&amp;guid=8890f5b3549cb4d3982c0f020064c90a&amp;type=3#Sprite_Background_Blurred&quot;); -unity-background-image-tint-color: rgb(255, 254, 0);">
         <ui:VisualElement name="leftNavigation" class="navigationField" style="flex-grow: 1;">
             <ui:VisualElement name="leftNavButton" style="flex-grow: 1; max-height: 10%; min-height: auto; top: 50%; background-color: rgb(115, 47, 27); border-top-right-radius: 15px; border-bottom-right-radius: 15px; border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-bottom-width: 5px; border-right-width: 5px;">
-                <ui:Label tabindex="-1" text="&lt;" parse-escape-sequences="true" display-tooltip-when-elided="true" style="flex-shrink: 1; flex-grow: 1; -unity-text-align: middle-center; font-size: 120px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 16px; padding-left: 0; align-self: center; justify-content: center; align-items: center; text-overflow: ellipsis; -unity-font-style: bold; color: rgb(255, 255, 255);" />
+                <ui:Button text="&lt;" parse-escape-sequences="true" display-tooltip-when-elided="true" name="leftButton" class="navButton" style="border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0);" />
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="PlayerInfoPanel" style="flex-grow: 1; cursor: initial; background-image: none; -unity-background-image-tint-color: rgba(255, 254, 255, 0); opacity: 1; display: none;">
+        <ui:VisualElement name="PlayerInfoPanel" style="flex-grow: 1; cursor: initial; background-image: none; -unity-background-image-tint-color: rgba(255, 254, 255, 0); opacity: 1; display: flex;">
             <ui:VisualElement name="characterInfo" class="display" style="flex-grow: 0; height: 20%; flex-basis: 15%; flex-shrink: 0; margin-top: 5%; flex-direction: row;">
                 <ui:VisualElement name="characterName" class="tabButton" style="flex-grow: 1; flex-direction: row;">
                     <ui:Label tabindex="-1" text="Character" parse-escape-sequences="true" display-tooltip-when-elided="true" class="tabText" />
@@ -43,7 +43,7 @@
             </ui:VisualElement>
             <ui:VisualElement name="footer" style="flex-grow: 0; flex-basis: 10%; flex-shrink: 0;" />
         </ui:VisualElement>
-        <ui:VisualElement name="SavedGamesPanel" style="flex-grow: 1; cursor: initial; background-image: none; -unity-background-image-tint-color: rgba(255, 254, 255, 0); display: flex;">
+        <ui:VisualElement name="SavedGamesPanel" style="flex-grow: 1; cursor: initial; background-image: none; -unity-background-image-tint-color: rgba(255, 254, 255, 0); display: none;">
             <ui:VisualElement name="menuInfo" class="display" style="flex-grow: 0; height: 20%; flex-basis: 15%; flex-shrink: 0; margin-top: 5%; flex-direction: row;">
                 <ui:VisualElement name="saveTitle" class="tabButton" style="flex-grow: 1;">
                     <ui:Label tabindex="-1" text="SAVES" parse-escape-sequences="true" display-tooltip-when-elided="true" class="tabText" />
@@ -52,11 +52,11 @@
             <ui:VisualElement name="display" class="display" style="flex-direction: column;">
                 <ui:VisualElement name="CurrentSaveData" style="flex-grow: 0; flex-basis: 25%;">
                     <ui:Label tabindex="-1" text="Current save" parse-escape-sequences="false" display-tooltip-when-elided="true" class="infoText" style="border-left-width: 13px; padding-left: 21px;" />
-                    <ui:Label tabindex="-1" text="Unnamed" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" name="CurrentData" style="-unity-text-align: upper-center; font-size: 50px; -unity-font-style: bold; -unity-font: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=2230732570650464555&amp;guid=eeed7b50327cc06418d36b4604c102e5&amp;type=3#NotInter-Regular&quot;); color: rgb(255, 255, 255); flex-shrink: 0; flex-grow: 1; height: 20%; visibility: visible; display: flex;" />
+                    <ui:Label tabindex="-1" text="Unnamed character" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" name="CurrentData" style="-unity-text-align: upper-center; font-size: 50px; -unity-font-style: bold; -unity-font: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=2230732570650464555&amp;guid=eeed7b50327cc06418d36b4604c102e5&amp;type=3#NotInter-Regular&quot;); color: rgb(255, 255, 255); flex-shrink: 0; flex-grow: 1; height: 20%; visibility: visible; display: flex;" />
                 </ui:VisualElement>
                 <ui:VisualElement name="SavingField" style="flex-grow: 1; min-height: 20%; max-height: 25%; border-top-width: 8px; border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); padding-top: 8px; padding-bottom: 8px; border-bottom-width: 8px; margin-top: 7px; margin-bottom: 7px;">
-                    <ui:Button text="Save" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SaveButton" class="saveLoadBtt" />
-                    <ui:Button text="Load selected game data" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LoadButton" class="saveLoadBtt" />
+                    <ui:Button text="Save" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SaveGameButton" class="saveLoadBtt" />
+                    <ui:Button text="Load selected game data" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LoadGameButton" class="saveLoadBtt" />
                 </ui:VisualElement>
                 <ui:VisualElement name="SavedGamesContainer" style="flex-grow: 1; flex-wrap: wrap; margin-top: 17px;">
                     <ui:VisualElement name="SavedFileTemplate">
@@ -64,11 +64,11 @@
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement name="footer" style="flex-grow: 0; flex-basis: 10%; flex-shrink: 0;" />
+            <ui:VisualElement name="footer" style="flex-grow: 0; flex-basis: 5%; flex-shrink: 0;" />
         </ui:VisualElement>
         <ui:VisualElement name="rightNavigation" class="navigationField" style="flex-grow: 1;">
             <ui:VisualElement name="rightNavButton" style="flex-grow: 1; max-height: 10%; top: 50%; background-color: rgb(116, 48, 27); border-top-left-radius: 15px; border-bottom-left-radius: 15px; border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-width: 5px; border-bottom-width: 5px;">
-                <ui:Label tabindex="-1" text="&gt;" parse-escape-sequences="true" display-tooltip-when-elided="true" style="flex-shrink: 1; flex-grow: 1; -unity-text-align: middle-center; font-size: 120px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 16px; padding-left: 0; align-self: center; justify-content: center; align-items: center; text-overflow: ellipsis; color: rgb(255, 255, 255); -unity-font-style: bold;" />
+                <ui:Button text="&gt;" parse-escape-sequences="true" display-tooltip-when-elided="true" name="rightButton" class="navButton" style="border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0);" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

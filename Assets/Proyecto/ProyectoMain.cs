@@ -50,28 +50,22 @@ namespace ProyectoMain
         /// </summary>
         Settings settings;
 
-        // VisualElement botonCrear;
-        // VisualElement botonGuardar;
-        // Toggle invertAxis;
-        // VisualElement contenedor_dcha;
-        // TextField saveGameName;
-        // Individuo individuoSelec;
-        // List<VisualElement> imagenes;
-
-        // List<Individuo> listIndividuos;
-
         public static ProyectoMain Instance { get; private set; }
 
         private void Awake()
         {
+            // Debug.Log("Awake Proyecto");
             if (Instance == null) Instance = this;
             else Destroy(gameObject);
         }
 
         private void OnEnable()
         {
+            // Debug.Log("OnEnable Proyecto");
             VisualElement root = GetComponent<UIDocument>().rootVisualElement;
+            Debug.Log(root);
             VisualElement menu = root.Q<VisualElement>("Menu");
+            Debug.Log(menu);
 
             // Load ans init data
             InitData();
@@ -98,13 +92,8 @@ namespace ProyectoMain
             loadGameButton = savedGamesPanel.Q<Button>("LoadGameButton"); // ! update or assert child of savedGamesPanel
 
             // Nav buttons reference
-            rightNavigationButton = root.Query<Button>("rightNavButton").First();
-            leftNavigationButton = root.Query<Button>("leftNavButton").First();
-
-
-            // LoadImages(ref imagenes);
-            // imagenSelec = imagenes.First().name;
-            // CajasBordeRojo(imagenes.First());
+            rightNavigationButton = root.Query<Button>("rightButton").First();
+            leftNavigationButton = root.Query<Button>("leftButton").First();
 
             // Register callbacks
             savedFiles.ForEach(file => file.RegisterCallback<ClickEvent>(SelectSavedFile));
@@ -120,9 +109,7 @@ namespace ProyectoMain
 
             rightNavigationButton.RegisterCallback<ClickEvent>(evt => GoToNextPanel(1));
             leftNavigationButton.RegisterCallback<ClickEvent>(evt => GoToNextPanel(-1));
-
-
-
+            Debug.Log("here");
 
 
             InitializeUI();
@@ -145,7 +132,8 @@ namespace ProyectoMain
                 
             }
             else {
-                selectedSavedFile = savedFiles.First().name; // string name of the save file selected by default
+                SaveGame currentSaveGame = savedGames.Find(save => save.Current == true); // gets the marked as current from other session
+                selectedSavedFile = currentSaveGame.Name; // string name of the save file selected by default of the first in the list of saved data
 
                 // Initialize to update UI
                 playerInfo = savedGames.First().PlayerInfo;
@@ -155,6 +143,7 @@ namespace ProyectoMain
 
         void InitializeUI()
         {
+            // Debug.Log("InitializeUI");
             InitPanels();
 
             InitializeSaveUI();
@@ -164,11 +153,17 @@ namespace ProyectoMain
 
         void InitPanels()
         {
-            currentPanel = 0;
+            // Debug.Log("InitPanels");
+            panels = new VisualElement[3];
 
+            currentPanel = 0;
+            
             panels[currentPanel] = playerInfoPanel; // Initial panel
             panels[1] = savedGamesPanel;
             panels[2] = settingsPanel;
+
+            DeactivateAllPanels();
+            ActivatePanel(panels[1]);
         }
 
         void InitializeSaveUI() 
@@ -235,7 +230,7 @@ namespace ProyectoMain
         /// <param name="evt"></param>
         void NewSaveFile(ClickEvent evt)
         {
-            VisualTreeAsset saveFileTemplate = Resources.Load<VisualTreeAsset>("SaveFile");
+            VisualTreeAsset saveFileTemplate = Resources.Load<VisualTreeAsset>("SavedFileTemplate");
             VisualElement newSaveFileElement = saveFileTemplate.Instantiate();
 
             savedGamesContainer.Add(newSaveFileElement);
