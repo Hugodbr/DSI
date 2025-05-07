@@ -89,8 +89,8 @@ namespace ProyectoMain
             playerLife = playerInfoPanel.Q<VisualElement>("PlayerLife"); // ! update or assert child of playerInfoPanel // VisualElement?
             playerWeapon = playerInfoPanel.Q<VisualElement>("PlayerWeapon"); // ! update or assert child of playerInfoPanel // VisualElement?
 
-            saveGameButton = savedGamesPanel.Q<Button>("SaveGameButton"); // ! update or assert child of savedGamesPanel
-            loadGameButton = savedGamesPanel.Q<Button>("LoadGameButton"); // ! update or assert child of savedGamesPanel
+            saveGameButton = savedGamesPanel.Q<Button>("SaveGameButton");
+            loadGameButton = savedGamesPanel.Q<Button>("LoadGameButton");
 
             // Nav buttons reference
             rightNavigationButton = root.Query<Button>("rightButton").First();
@@ -172,11 +172,11 @@ namespace ProyectoMain
             { 
                 savedGames.ForEach(save => 
                 {
-                    VisualTreeAsset saveFileTemplate = Resources.Load<VisualTreeAsset>("SaveFile");
+                    VisualTreeAsset saveFileTemplate = Resources.Load<VisualTreeAsset>("SavedFileTemplate");
                     VisualElement newSaveFileElement = saveFileTemplate.Instantiate();
                     InitializeFileElement(newSaveFileElement);
 
-                    savedGamesContainer.Add(newSaveFileElement);
+                    savedGamesContainer.Insert(0, newSaveFileElement);
                     SavedFileBorderBlack();
 
                     SaveGame newSaveGame = new SaveGame(
@@ -187,6 +187,10 @@ namespace ProyectoMain
                     );
 
                     SaveGameFile saveFile = new SaveGameFile(newSaveFileElement, newSaveGame.Name);
+
+                    if (save.Current) {
+                        currentGameLabel.text = save.Name;
+                    }
                 });
             }
         }
@@ -217,7 +221,8 @@ namespace ProyectoMain
         void SelectSavedFile(ClickEvent evt)
         {
             VisualElement saveFile = evt.currentTarget as VisualElement;
-            selectedSavedFile = saveFile.name;
+            Button btt = saveFile.Q<Button>("SavedFile");
+            selectedSavedFile = btt.text;
 
             SavedFileBorderBlack();
             SavedFileBorderWhite(saveFile);
@@ -235,7 +240,7 @@ namespace ProyectoMain
             VisualElement newSaveFileElement = saveFileTemplate.Instantiate();
             InitializeFileElement(newSaveFileElement);
 
-            savedGamesContainer.Add(newSaveFileElement);
+            savedGamesContainer.Insert(0, newSaveFileElement);
             SavedFileBorderBlack();
             SavedFileBorderWhite(newSaveFileElement);
 
@@ -254,7 +259,7 @@ namespace ProyectoMain
             selectedSavedFile = newSaveGame.Name;
 
             savedGames.Add(newSaveGame);
-            JsonHelper.ToJson(savedGames, true); // save list to json
+            Basedatos.SaveSavedGames(savedGames);
         }
 
         /// <summary>
@@ -264,6 +269,8 @@ namespace ProyectoMain
         /// <param name="evt"></param>
         void LoadSavedFile(ClickEvent evt)
         {
+            Debug.Log("load");
+
             if (selectedSavedFile == "") // if no saved game, does nothing
                 return;
 
@@ -276,6 +283,8 @@ namespace ProyectoMain
             // Update current game loaded
             currentSaveGame.Current = false;
             currentSaveGame = loadSave;
+            loadSave.Current = true;
+            Debug.Log(selectedSavedFile);
             currentGameLabel.text = selectedSavedFile; // updates the current save data display
         }
 
