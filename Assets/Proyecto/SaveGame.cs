@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace ProyectoMain
 {
+    /// <summary>
+    /// Data structure for save game
+    /// </summary>
     [Serializable]
     public class SaveGame
     {
@@ -12,6 +15,14 @@ namespace ProyectoMain
         {
             get { return name; }
             set { name = value; } 
+        }
+
+        [SerializeField]
+        private bool current;
+        public bool Current
+        {
+            get { return current; }
+            set { current = value; } 
         }
 
         [SerializeField]
@@ -30,9 +41,10 @@ namespace ProyectoMain
             set { settings = value; }
         }
 
-        public SaveGame(string name, PlayerInfo playerInfo, Settings settings)
+        public SaveGame(string name, PlayerInfo playerInfo, Settings settings, bool current)
         {
             this.name = name;
+            this.current = current;
             this.playerInfo = playerInfo;
             this.settings = settings;
         }

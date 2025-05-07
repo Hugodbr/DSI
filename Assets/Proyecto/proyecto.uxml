@@ -1,19 +1,21 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/Proyecto/proyectoStyle.uss?fileID=7433441132597879392&amp;guid=80a8dc6ec8951514789ebc99b7562416&amp;type=3#proyectoStyle" />
-    <ui:VisualElement name="main" style="flex-grow: 1; flex-direction: row; background-image: url(&quot;project://database/Assets/Proyecto/Art/UI/BackgroundBlurred/Sprite_Background_Blurred.png?fileID=2800000&amp;guid=8890f5b3549cb4d3982c0f020064c90a&amp;type=3#Sprite_Background_Blurred&quot;); -unity-background-image-tint-color: rgb(255, 254, 0);">
+    <ui:VisualElement name="Menu" style="flex-grow: 1; flex-direction: row; background-image: url(&quot;project://database/Assets/Proyecto/Art/UI/BackgroundBlurred/Sprite_Background_Blurred.png?fileID=2800000&amp;guid=8890f5b3549cb4d3982c0f020064c90a&amp;type=3#Sprite_Background_Blurred&quot;); -unity-background-image-tint-color: rgb(255, 254, 0);">
         <ui:VisualElement name="leftNavigation" class="navigationField" style="flex-grow: 1;">
-            <ui:VisualElement name="leftNavButton" style="flex-grow: 1; max-height: 10%; min-height: auto; top: 50%; background-color: rgb(115, 47, 27);" />
+            <ui:VisualElement name="leftNavButton" style="flex-grow: 1; max-height: 10%; min-height: auto; top: 50%; background-color: rgb(115, 47, 27);">
+                <ui:Label tabindex="-1" text="&lt;" parse-escape-sequences="true" display-tooltip-when-elided="true" style="flex-shrink: 1; flex-grow: 1; -unity-text-align: middle-center; font-size: 120px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 16px; padding-left: 0; align-self: center; justify-content: center; align-items: center; text-overflow: ellipsis;" />
+            </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="centralMenu" style="flex-grow: 1; cursor: initial; background-image: none; -unity-background-image-tint-color: rgba(255, 254, 255, 0); opacity: 1; display: none;">
+        <ui:VisualElement name="PlayerInfoPanel" style="flex-grow: 1; cursor: initial; background-image: none; -unity-background-image-tint-color: rgba(255, 254, 255, 0); opacity: 1; display: none;">
             <ui:VisualElement name="characterInfo" class="display" style="flex-grow: 0; height: 20%; flex-basis: 15%; flex-shrink: 0; margin-top: 5%; flex-direction: row;">
-                <ui:VisualElement name="characterName" class="tabButton" style="flex-grow: 1;">
-                    <ui:Label tabindex="-1" text="Sir Wichver" parse-escape-sequences="true" display-tooltip-when-elided="true" class="tabText" style="font-size: 30px;" />
+                <ui:VisualElement name="characterName" class="tabButton" style="flex-grow: 1; flex-direction: row;">
+                    <ui:Label tabindex="-1" text="Character" parse-escape-sequences="true" display-tooltip-when-elided="true" class="tabText" />
                 </ui:VisualElement>
-                <LifeStatusDisplay life-points="3" style="flex-direction: row;" />
             </ui:VisualElement>
             <ui:VisualElement name="display" class="display" style="flex-direction: row;">
                 <ui:VisualElement name="tabMenu1" style="flex-grow: 1; flex-direction: row;">
-                    <ui:VisualElement name="menu" style="flex-grow: 1;">
+                    <ui:VisualElement name="info" style="flex-grow: 1;">
+                        <ui:TextField picking-mode="Ignore" label="Character" value="Unnamed Player" name="PlayerName" style="height: 10%; min-width: auto; min-height: 10px; background-color: rgba(0, 0, 0, 0); font-size: 38px; color: rgb(69, 127, 255); flex-grow: 1; flex-shrink: 1; max-height: 10%;" />
                         <ui:VisualElement name="characterIcon" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Proyecto/Art/UI/Avatars/Sprite_Avatar_Knight.png?fileID=2800000&amp;guid=37d638a1a60c84e8c88aec78c7fd88bf&amp;type=3#Sprite_Avatar_Knight&quot;);" />
                     </ui:VisualElement>
                     <ui:VisualElement name="weaponSelector" class="weaponSelectorBox" style="flex-grow: 1;" />
@@ -21,38 +23,53 @@
             </ui:VisualElement>
             <ui:VisualElement name="footer" style="flex-grow: 0; flex-basis: 10%; flex-shrink: 0;" />
         </ui:VisualElement>
-        <ui:VisualElement name="settingsMenu" style="flex-grow: 1; cursor: initial; background-image: none; -unity-background-image-tint-color: rgba(255, 254, 255, 0); display: none;">
+        <ui:VisualElement name="SettingsPanel" style="flex-grow: 1; cursor: initial; background-image: none; -unity-background-image-tint-color: rgba(255, 254, 255, 0); display: flex;">
             <ui:VisualElement name="menuInfo" class="display" style="flex-grow: 0; height: 20%; flex-basis: 15%; flex-shrink: 0; margin-top: 5%; flex-direction: row;">
                 <ui:VisualElement name="settingsTitle" class="tabButton" style="flex-grow: 1;">
-                    <ui:Label tabindex="-1" text="Settings" parse-escape-sequences="true" display-tooltip-when-elided="true" class="tabText" style="font-size: 30px;" />
+                    <ui:Label tabindex="-1" text="Settings" parse-escape-sequences="true" display-tooltip-when-elided="true" class="tabText" />
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="display" class="display" style="flex-direction: column;">
-                <ui:VisualElement name="volumeField" style="flex-grow: 1; max-height: 17%; min-height: auto;">
-                    <ui:Slider label="      Volume" high-value="100" style="color: rgb(255, 255, 255); margin-right: 5%; margin-left: 5%; margin-top: 8px; -unity-font: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&amp;guid=e3265ab4bf004d28a9537516768c1c75&amp;type=3#LiberationSans&quot;); -unity-font-style: bold;" />
+                <ui:VisualElement name="volumeField" class="settingField" style="flex-grow: 1;">
+                    <ui:Slider label="      Volume" high-value="100" name="SettingsVolume" style="color: rgb(0, 0, 0); margin-right: 0; margin-left: 0; margin-top: 0; -unity-font: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&amp;guid=e3265ab4bf004d28a9537516768c1c75&amp;type=3#LiberationSans&quot;); -unity-font-style: bold; flex-shrink: 1; flex-grow: 1; -unity-text-align: middle-left; margin-bottom: 0; font-size: 25px;" />
                 </ui:VisualElement>
-                <ui:VisualElement name="controlsField" class="settingField" style="flex-grow: 1;" />
+                <ui:VisualElement name="controlsField" class="settingField" style="flex-grow: 1;">
+                    <ui:Toggle label="Inverted Axis" name="InvertedAxis" class="settingsText" style="flex-shrink: 1; flex-grow: 1;" />
+                </ui:VisualElement>
                 <ui:VisualElement name="networkingField" class="settingField" style="flex-grow: 1;" />
-                <ui:VisualElement name="difficultyField" class="settingField" style="flex-grow: 1; margin-bottom: 20px;" />
+                <ui:VisualElement name="difficultyField" class="settingField" style="flex-grow: 1; margin-bottom: 20px;">
+                    <ui:DropdownField label="Difficulty" name="SettingsDifficulty" style="flex-shrink: 1; flex-grow: 1; -unity-text-align: middle-center; color: rgb(0, 0, 0); font-size: 43px;" />
+                </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="footer" style="flex-grow: 0; flex-basis: 10%; flex-shrink: 0;" />
         </ui:VisualElement>
-        <ui:VisualElement name="saveMenu" style="flex-grow: 1; cursor: initial; background-image: none; -unity-background-image-tint-color: rgba(255, 254, 255, 0);">
+        <ui:VisualElement name="SavedGamesPanel" style="flex-grow: 1; cursor: initial; background-image: none; -unity-background-image-tint-color: rgba(255, 254, 255, 0); display: none;">
             <ui:VisualElement name="menuInfo" class="display" style="flex-grow: 0; height: 20%; flex-basis: 15%; flex-shrink: 0; margin-top: 5%; flex-direction: row;">
                 <ui:VisualElement name="saveTitle" class="tabButton" style="flex-grow: 1;">
-                    <ui:Label tabindex="-1" text="Saves" parse-escape-sequences="true" display-tooltip-when-elided="true" class="tabText" style="font-size: 30px;" />
+                    <ui:Label tabindex="-1" text="SAVES" parse-escape-sequences="true" display-tooltip-when-elided="true" class="tabText" />
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="display" class="display" style="flex-direction: column;">
-                <ui:VisualElement name="savingField" style="flex-grow: 1; min-height: 20%; max-height: 25%;">
-                    <ui:Button text="Save" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+                <ui:VisualElement name="CurrentSaveData" style="flex-grow: 0; flex-basis: 25%;">
+                    <ui:Label tabindex="-1" text="Current save" parse-escape-sequences="false" display-tooltip-when-elided="true" class="infoText" style="border-left-width: 13px; padding-left: 21px;" />
+                    <ui:Label tabindex="-1" text="Unnamed" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" name="CurrentData" style="-unity-text-align: upper-center; font-size: 50px; -unity-font-style: bold; -unity-font: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=2230732570650464555&amp;guid=eeed7b50327cc06418d36b4604c102e5&amp;type=3#NotInter-Regular&quot;); color: rgb(255, 255, 255); flex-shrink: 0; flex-grow: 1; height: 20%; visibility: visible; display: flex;" />
                 </ui:VisualElement>
-                <ui:VisualElement name="savesField" style="flex-grow: 1;" />
+                <ui:VisualElement name="SavingField" style="flex-grow: 1; min-height: 20%; max-height: 25%; border-top-width: 8px; border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); padding-top: 8px; padding-bottom: 8px; border-bottom-width: 8px; margin-top: 7px; margin-bottom: 7px;">
+                    <ui:Button text="Save" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SaveButton" class="saveLoadBtt" />
+                    <ui:Button text="Load selected game data" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LoadButton" class="saveLoadBtt" />
+                </ui:VisualElement>
+                <ui:VisualElement name="SavedGamesContainer" style="flex-grow: 1; flex-wrap: wrap; margin-top: 17px;">
+                    <ui:VisualElement name="SavedFileTemplate">
+                        <ui:Button text="SavedFile" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SavedFile" class="saveFileBtt" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="footer" style="flex-grow: 0; flex-basis: 10%; flex-shrink: 0;" />
         </ui:VisualElement>
         <ui:VisualElement name="rightNavigation" class="navigationField" style="flex-grow: 1;">
-            <ui:VisualElement name="rightNavButton" style="flex-grow: 1; max-height: 10%; top: 50%; background-color: rgb(116, 48, 27);" />
+            <ui:VisualElement name="rightNavButton" style="flex-grow: 1; max-height: 10%; top: 50%; background-color: rgb(116, 48, 27);">
+                <ui:Label tabindex="-1" text="&gt;" parse-escape-sequences="true" display-tooltip-when-elided="true" style="flex-shrink: 1; flex-grow: 1; -unity-text-align: middle-center; font-size: 120px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 16px; padding-left: 0; align-self: center; justify-content: center; align-items: center; text-overflow: ellipsis;" />
+            </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

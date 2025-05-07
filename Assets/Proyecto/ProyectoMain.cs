@@ -25,7 +25,8 @@ namespace ProyectoMain
         VisualElement playerLife;
         VisualElement playerWeapon;
 
-        Label currentLoadedGame;
+        Label currentGameLabel;
+        SaveGame currentSaveGame;
         VisualElement savedGamesContainer;
         Button saveGameButton;
         Button loadGameButton;
@@ -70,28 +71,34 @@ namespace ProyectoMain
         private void OnEnable()
         {
             VisualElement root = GetComponent<UIDocument>().rootVisualElement;
+            VisualElement menu = root.Q<VisualElement>("Menu");
 
             // Load ans init data
             InitData();
 
             // Initialize UI elements references
-            savedGamesPanel = root.Q<VisualElement>("SavedGamesPanel");
-            settingsPanel = root.Q<VisualElement>("SettingsPanel");
-            playerInfoPanel = root.Q<VisualElement>("PlayerInfoPanel");
+            savedGamesPanel = menu.Q<VisualElement>("SavedGamesPanel");
+            settingsPanel = menu.Q<VisualElement>("SettingsPanel");
+            playerInfoPanel = menu.Q<VisualElement>("PlayerInfoPanel");
 
             savedGamesContainer = savedGamesPanel.Q<VisualElement>("SavedGamesContainer"); // ! update or assert child of savedGamesPanel
-            currentLoadedGame = savedGamesPanel.Q<Label>("CurrentLoadedGame");
+            currentGameLabel = savedGamesPanel.Query<Label>("CurrentData");
             savedFiles = savedGamesContainer.Children().ToList(); // elements of saved files with name and date
 
             settingsVolume = settingsPanel.Q<Slider>("SettingsVolume"); // ! update or assert child of settingsPanel
-            settingsDifficulty = settingsPanel.Q<DropdownField>("SettingsDifficulty"); // ! update or assert child of settingsPanel
+            settingsDifficulty = settingsPanel.Query<DropdownField>("SettingsDifficulty"); // ! update or assert child of settingsPanel
 
-            playerName = playerInfoPanel.Q<TextField>("PlayerName"); // ! update or assert child of playerInfoPanel
+            playerName = playerInfoPanel.Query<TextField>("PlayerName"); // ! update or assert child of playerInfoPanel
             playerLife = playerInfoPanel.Q<VisualElement>("PlayerLife"); // ! update or assert child of playerInfoPanel // VisualElement?
             playerWeapon = playerInfoPanel.Q<VisualElement>("PlayerWeapon"); // ! update or assert child of playerInfoPanel // VisualElement?
 
             saveGameButton = savedGamesPanel.Q<Button>("SaveGameButton"); // ! update or assert child of savedGamesPanel
             loadGameButton = savedGamesPanel.Q<Button>("LoadGameButton"); // ! update or assert child of savedGamesPanel
+
+            // Nav buttons reference
+            rightNavigationButton = root.Query<Button>("rightNavButton").First();
+            leftNavigationButton = root.Query<Button>("leftNavButton").First();
+
 
             // LoadImages(ref imagenes);
             // imagenSelec = imagenes.First().name;
@@ -108,7 +115,7 @@ namespace ProyectoMain
             playerName.RegisterCallback<ChangeEvent<string>>(ChangePlayerName);
             // playerLife.RegisterCallback<ChangeEvent<string>>(ChangePlayerLife);
             // playerWeapon.RegisterCallback<ClickEvent>(ChangeWeapon); //* In wepon script
-            
+
             rightNavigationButton.RegisterCallback<ClickEvent>(evt => GoToNextPanel(1));
             leftNavigationButton.RegisterCallback<ClickEvent>(evt => GoToNextPanel(-1));
 
@@ -133,6 +140,7 @@ namespace ProyectoMain
                 // Set default data to initialize UI
                 playerInfo = new PlayerInfo("Unnamed player", 0, 2);
                 settings = new Settings(100, "Normal", false);
+                // currentSaveGame = 
             }
             else {
                 selectedSavedFile = savedFiles.First().name; // string name of the save file selected by default
@@ -260,7 +268,8 @@ namespace ProyectoMain
             // Updates data
             playerInfo = loadSave.PlayerInfo;
             settings = loadSave.Settings;
-            currentLoadedGame.text = selectedSavedFile; // updates the current save data display
+            
+            currentGameLabel.text = selectedSavedFile; // updates the current save data display
         }
 
         void ChangePlayerName(ChangeEvent<string> evt)
