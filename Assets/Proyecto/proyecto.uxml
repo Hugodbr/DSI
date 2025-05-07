@@ -21,9 +21,9 @@
             </ui:VisualElement>
             <ui:VisualElement name="footer" style="flex-grow: 0; flex-basis: 10%; flex-shrink: 0;" />
         </ui:VisualElement>
-        <ui:VisualElement name="settingsMenu" style="flex-grow: 1; cursor: initial; background-image: none; -unity-background-image-tint-color: rgba(255, 254, 255, 0);">
+        <ui:VisualElement name="settingsMenu" style="flex-grow: 1; cursor: initial; background-image: none; -unity-background-image-tint-color: rgba(255, 254, 255, 0); display: none;">
             <ui:VisualElement name="menuInfo" class="display" style="flex-grow: 0; height: 20%; flex-basis: 15%; flex-shrink: 0; margin-top: 5%; flex-direction: row;">
-                <ui:VisualElement name="characterName" class="tabButton" style="flex-grow: 1;">
+                <ui:VisualElement name="settingsTitle" class="tabButton" style="flex-grow: 1;">
                     <ui:Label tabindex="-1" text="Settings" parse-escape-sequences="true" display-tooltip-when-elided="true" class="tabText" style="font-size: 30px;" />
                 </ui:VisualElement>
             </ui:VisualElement>
@@ -34,6 +34,20 @@
                 <ui:VisualElement name="controlsField" class="settingField" style="flex-grow: 1;" />
                 <ui:VisualElement name="networkingField" class="settingField" style="flex-grow: 1;" />
                 <ui:VisualElement name="difficultyField" class="settingField" style="flex-grow: 1; margin-bottom: 20px;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="footer" style="flex-grow: 0; flex-basis: 10%; flex-shrink: 0;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="saveMenu" style="flex-grow: 1; cursor: initial; background-image: none; -unity-background-image-tint-color: rgba(255, 254, 255, 0);">
+            <ui:VisualElement name="menuInfo" class="display" style="flex-grow: 0; height: 20%; flex-basis: 15%; flex-shrink: 0; margin-top: 5%; flex-direction: row;">
+                <ui:VisualElement name="saveTitle" class="tabButton" style="flex-grow: 1;">
+                    <ui:Label tabindex="-1" text="Saves" parse-escape-sequences="true" display-tooltip-when-elided="true" class="tabText" style="font-size: 30px;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="display" class="display" style="flex-direction: column;">
+                <ui:VisualElement name="savingField" style="flex-grow: 1; min-height: 20%; max-height: 25%;">
+                    <ui:Button text="Save" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+                </ui:VisualElement>
+                <ui:VisualElement name="savesField" style="flex-grow: 1;" />
             </ui:VisualElement>
             <ui:VisualElement name="footer" style="flex-grow: 0; flex-basis: 10%; flex-shrink: 0;" />
         </ui:VisualElement>

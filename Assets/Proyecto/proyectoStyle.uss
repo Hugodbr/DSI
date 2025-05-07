@@ -70,3 +70,7 @@
     margin-right: 5%;
     margin-left: 5%;
 }
+
+.settingField:hover {
+    background-color: rgb(173, 133, 123);
+}
