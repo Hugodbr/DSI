@@ -4,6 +4,9 @@ using UnityEngine.UIElements;
 
 namespace ProyectoMain
 {
+    /// <summary>
+    /// The visual element save file data
+    /// </summary>
     public class SaveGameFile
     {
         VisualElement savefileRoot;
@@ -21,8 +24,7 @@ namespace ProyectoMain
         }
 
         void UpdateUI(){
-        //    nameLabel.text = mIndividuo.Nombre;
-         //   apellidoLabel.text = mIndividuo.Apellido;
+            nameLabel.text = name;
         }
     }
 }

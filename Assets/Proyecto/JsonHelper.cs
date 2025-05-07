@@ -9,24 +9,24 @@ namespace ProyectoMain
     {
         public static List<T> FromJson<T>(string json)
         {
-            ListaWrapper<T> wrapper = JsonUtility.FromJson<ListaWrapper<T>>(json);
+            ListWrapper<T> wrapper = JsonUtility.FromJson<ListWrapper<T>>(json);
             return wrapper.Items;
         }
 
         public static string ToJson<T>(List<T> list)
         {
-            ListaWrapper<T> wrapper = new ListaWrapper<T> { Items = list };
+            ListWrapper<T> wrapper = new ListWrapper<T> { Items = list };
             return JsonUtility.ToJson(wrapper);
         }
 
         public static string ToJson<T>(List<T> list, bool prettyPrint)
         {
-            ListaWrapper<T> wrapper = new ListaWrapper<T> { Items = list };
+            ListWrapper<T> wrapper = new ListWrapper<T> { Items = list };
             return JsonUtility.ToJson(wrapper, prettyPrint);
         }
 
         [Serializable]
-        private class ListaWrapper<T>
+        private class ListWrapper<T>
         {
             public List<T> Items;
         }

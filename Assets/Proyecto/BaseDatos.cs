@@ -25,6 +25,7 @@ namespace ProyectoMain
         {
             string json = JsonHelper.ToJson(savedGames, true);
             File.WriteAllText(SavedGamesPath, json);
+            Debug.Log($"Saved to: {SavedGamesPath}");
         }
 
     }

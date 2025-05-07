@@ -3,7 +3,8 @@ using UnityEngine.UIElements;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.IO; 
+using System.IO;
+using System.Numerics;
 
 
 namespace ProyectoMain
@@ -13,11 +14,18 @@ namespace ProyectoMain
         VisualElement playerInfoPanel;
         VisualElement savedGamesPanel;
         VisualElement settingsPanel;
+        Button rightNavigationButton;
+        Button leftNavigationButton;
+        // For cycling over panels with button event
+        VisualElement[] panels;
+        int currentPanel;
+
 
         TextField playerName;
         VisualElement playerLife;
         VisualElement playerWeapon;
 
+        Label currentLoadedGame;
         VisualElement savedGamesContainer;
         Button saveGameButton;
         Button loadGameButton;
@@ -27,7 +35,7 @@ namespace ProyectoMain
         Slider settingsVolume;
         DropdownField settingsDifficulty;
         Toggle settingsInvertAxis;
-
+        List<string> difficultyChoices;
         /// <summary>
         /// Current player info
         /// </summary>
@@ -72,6 +80,7 @@ namespace ProyectoMain
             playerInfoPanel = root.Q<VisualElement>("PlayerInfoPanel");
 
             savedGamesContainer = savedGamesPanel.Q<VisualElement>("SavedGamesContainer"); // ! update or assert child of savedGamesPanel
+            currentLoadedGame = savedGamesPanel.Q<Label>("CurrentLoadedGame");
             savedFiles = savedGamesContainer.Children().ToList(); // elements of saved files with name and date
 
             settingsVolume = settingsPanel.Q<Slider>("SettingsVolume"); // ! update or assert child of settingsPanel
@@ -93,19 +102,19 @@ namespace ProyectoMain
             saveGameButton.RegisterCallback<ClickEvent>(NewSaveFile);
             loadGameButton.RegisterCallback<ClickEvent>(LoadSavedFile);
 
-            settingsVolume.RegisterCallback<ChangeEvent<float>>(ChangeVolume); // TODO float?
-            settingsDifficulty.RegisterCallback<ChangeEvent<string>>(ChangeDifficulty); // TODO 
+            settingsVolume.RegisterCallback<ChangeEvent<float>>(ChangeVolume);
+            settingsDifficulty.RegisterCallback<ChangeEvent<string>>(ChangeDifficulty);
 
             playerName.RegisterCallback<ChangeEvent<string>>(ChangePlayerName);
             // playerLife.RegisterCallback<ChangeEvent<string>>(ChangePlayerLife);
-            // playerWeapon.RegisterCallback<ClickEvent>(ChangeWeapon);
+            // playerWeapon.RegisterCallback<ClickEvent>(ChangeWeapon); //* In wepon script
+            
+            rightNavigationButton.RegisterCallback<ClickEvent>(evt => GoToNextPanel(1));
+            leftNavigationButton.RegisterCallback<ClickEvent>(evt => GoToNextPanel(-1));
 
-            // botonCrear.RegisterCallback<ClickEvent>(NuevaTarjeta);
-            // botonGuardar.RegisterCallback<ClickEvent>(SaveIndividuosToFile);
-            // input_nombre.RegisterCallback<ChangeEvent<string>>(CambioNombre);
-            // input_apellido.RegisterCallback<ChangeEvent<string>>(CambioApellido);
-            // contenedor_dcha.RegisterCallback<ClickEvent>(SeleccionTarjeta);
-            // imagenes.ForEach(caja => caja.RegisterCallback<ClickEvent>(SeleccionImagen));
+
+
+
 
             InitializeUI();
         }
@@ -136,9 +145,20 @@ namespace ProyectoMain
 
         void InitializeUI()
         {
+            InitPanels();
+
             InitializeSaveUI();
             InitializePlayerUI();
             InitializeSettingsUI();
+        }
+
+        void InitPanels()
+        {
+            currentPanel = 0;
+
+            panels[currentPanel] = playerInfoPanel; // Initial panel
+            panels[1] = savedGamesPanel;
+            panels[2] = settingsPanel;
         }
 
         void InitializeSaveUI() 
@@ -183,7 +203,7 @@ namespace ProyectoMain
             settingsVolume.value = settings.Volume;
             settingsInvertAxis.value = settings.InvertedAxis;
 
-            List<string> difficultyChoices = new List<string> { "Easy", "Normal", "Hard", "Brasil" };
+            difficultyChoices = new List<string> { "Easy", "Normal", "Hard", "Brasil" };
             settingsDifficulty = new DropdownField(difficultyChoices, 1); // 1 = default to "Normal"
             settingsDifficulty.value = settings.Difficulty;
         }
@@ -232,24 +252,16 @@ namespace ProyectoMain
         /// <param name="evt"></param>
         void LoadSavedFile(ClickEvent evt)
         {
-            
+            if (selectedSavedFile == "") // if no saved game, does nothing
+                return;
+
+            SaveGame loadSave = savedGames.Find(save => save.Name == selectedSavedFile); // gets the save with the selected name
+
+            // Updates data
+            playerInfo = loadSave.PlayerInfo;
+            settings = loadSave.Settings;
+            currentLoadedGame.text = selectedSavedFile; // updates the current save data display
         }
-
-        // void SeleccionTarjeta(ClickEvent e)
-        // {
-        //     VisualElement mTarjeta = e.target as VisualElement;
-        //     individuoSelec = mTarjeta.userData as Individuo;
-
-        //     if (individuoSelec != null)
-        //     {
-        //         input_nombre.SetValueWithoutNotify(individuoSelec.Nombre);
-        //         input_apellido.SetValueWithoutNotify(individuoSelec.Apellido);
-        //         toggleModificar.value = true;
-
-        //         TarjetasBordeNegro();
-        //         TarjetasBordeBlanco(mTarjeta);
-        //     }
-        // }
 
         void ChangePlayerName(ChangeEvent<string> evt)
         {
@@ -277,25 +289,11 @@ namespace ProyectoMain
         }
 
         // ! Use as examplo if feature to delete multiple save datas
-        // void CambioNombre(ChangeEvent<string> evt){
+        // void Cambio(ChangeEvent<string> evt){
         //     if (toggleModificar.value){
         //         individuoSelec.Nombre = evt.newValue;
         //     }
         // }
-
-        void SaveIndividuosToFile(ClickEvent evt)
-        {
-            string json = "";// JsonHelper.ToJson(listIndividuos, true);
-            string filePath = Path.Combine(Application.persistentDataPath, "individuos.json");
-
-            if (File.Exists(filePath)) {
-                File.Delete(filePath); 
-                Debug.Log("File deleted.");
-            }
-
-            File.WriteAllText(filePath, json);
-            Debug.Log($"Saved to: {filePath}");
-        }
 
         /// <summary>
         /// Change border color of all file elements
@@ -322,5 +320,34 @@ namespace ProyectoMain
             fileElem.style.borderTopColor    = Color.white;
             fileElem.style.borderLeftColor   = Color.white;
         }
+
+        void DeactivateAllPanels()
+        {
+            foreach (var panel in panels)
+            {
+                panel.style.display = DisplayStyle.None;
+            }
+        }
+
+        void ActivatePanel(VisualElement panel)
+        {
+            panel.style.display = DisplayStyle.Flex;
+        }
+
+        /// <summary>
+        /// Cycle over panels
+        /// </summary>
+        /// <param name="direction"></param>
+        void GoToNextPanel(int direction)
+        {
+            currentPanel += direction;
+
+            if (currentPanel > 2) currentPanel = 0;
+            else if (currentPanel < 0) currentPanel = 2;
+
+            DeactivateAllPanels();
+            ActivatePanel(panels[currentPanel]);
+        }
+
     }
 }
