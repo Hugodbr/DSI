@@ -275,9 +275,11 @@ namespace ProyectoMain
             savedGames.Add(newSaveGame);
             Basedatos.SaveSavedGames(savedGames);
 
-            // Updates the current save game loaded
-            SaveGame currentSave = savedGames.Find(save => save.Name == currentGameLabel.text);
-            currentSave.Current = false;
+            if (selectedSavedFile != "") {
+                // Updates the current save game loaded
+                SaveGame currentSave = savedGames.Find(save => save.Name == currentGameLabel.text);
+                currentSave.Current = false;
+            }
 
             UpdateSettingsUI(newSaveGame);
             UpdatePlayerInfoUI(newSaveGame);
