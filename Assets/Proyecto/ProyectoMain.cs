@@ -22,9 +22,9 @@ namespace ProyectoMain
         int currentPanel;
 
 
-        TextField playerName;
-        LifeStatusDisplay playerLife;
-        VisualElement playerWeapon;
+        TextField playerNameUI;
+        LifeStatusDisplay playerLifeUI;
+        VisualElement playerWeaponUI;
         WeaponSelectorManipulator weaponBoxManipulator;
 
         Label currentGameLabel;
@@ -35,14 +35,14 @@ namespace ProyectoMain
         List<VisualElement> savedFiles;
         string selectedSavedFile;
 
-        Slider settingsVolume;
-        DropdownField settingsDifficulty;
-        Toggle settingsInvertedAxis;
+        Slider settingsVolumeUI;
+        DropdownField settingsDifficultyUI;
+        Toggle settingsInvertedAxisUI;
         List<string> difficultyChoices;
         /// <summary>
         /// Current player info
         /// </summary>
-        PlayerInfo playerInfo;
+        PlayerInfo currPlayerInfo;
         /// <summary>
         /// Current saved games
         /// </summary>
@@ -50,7 +50,7 @@ namespace ProyectoMain
         /// <summary>
         /// Current settings
         /// </summary>
-        Settings settings;
+        Settings currSettings;
 
         public static ProyectoMain Instance { get; private set; }
 
@@ -65,12 +65,10 @@ namespace ProyectoMain
         {
             // Debug.Log("OnEnable Proyecto");
             VisualElement root = GetComponent<UIDocument>().rootVisualElement;
-            Debug.Log(root);
             VisualElement menu = root.Q<VisualElement>("Menu");
-            Debug.Log(menu);
 
             // Load ans init data
-            InitData();
+            SaveGame initSave = InitData();
 
             // Initialize UI elements references
             // Panels
@@ -82,14 +80,15 @@ namespace ProyectoMain
             savedGamesContainer = savedGamesPanel.Query<VisualElement>("SavedGamesContainer");
             // savedFiles = savedGamesContainer.Children().ToList(); // elements of saved files with name and date
             // Settings panel elements
-            settingsVolume = settingsPanel.Query<Slider>("SettingsVolume");
-            settingsDifficulty = settingsPanel.Query<DropdownField>("SettingsDifficulty");
-            settingsInvertedAxis = settingsPanel.Query<Toggle>("InvertedAxis");
+            settingsVolumeUI = settingsPanel.Query<Slider>("SettingsVolume");
+            settingsDifficultyUI = settingsPanel.Query<DropdownField>("SettingsDifficulty");
+            settingsInvertedAxisUI = settingsPanel.Query<Toggle>("InvertedAxis");
             
-            playerName = playerInfoPanel.Query<TextField>("PlayerName"); // ! update or assert child of playerInfoPanel
-            playerLife = playerInfoPanel.Q<LifeStatusDisplay>("PlayerLife"); // ! update or assert child of playerInfoPanel // VisualElement?
-            playerWeapon = playerInfoPanel.Q<VisualElement>("PlayerWeapon"); // ! update or assert child of playerInfoPanel // VisualElement?
-            
+
+            playerNameUI = playerInfoPanel.Query<TextField>("PlayerName");
+            playerLifeUI = playerInfoPanel.Q<LifeStatusDisplay>("PlayerLife");
+            playerWeaponUI = playerInfoPanel.Q<VisualElement>("PlayerWeapon");
+
             weaponBoxManipulator = new WeaponSelectorManipulator();
             root.Query(className: "weaponSelectorBox").First().AddManipulator(weaponBoxManipulator);
 
@@ -104,25 +103,23 @@ namespace ProyectoMain
             saveGameButton.RegisterCallback<ClickEvent>(NewSaveFile);
             loadGameButton.RegisterCallback<ClickEvent>(LoadSavedFile);
 
-            settingsVolume.RegisterCallback<ChangeEvent<float>>(ChangeVolume);
-            settingsDifficulty.RegisterCallback<ChangeEvent<string>>(ChangeDifficulty);
+            settingsVolumeUI.RegisterCallback<ChangeEvent<float>>(ChangeVolume);
+            settingsDifficultyUI.RegisterCallback<ChangeEvent<string>>(ChangeDifficulty);
 
-            playerName.RegisterCallback<ChangeEvent<string>>(ChangePlayerName);
+            playerNameUI.RegisterCallback<ChangeEvent<string>>(ChangePlayerName);
             // playerLife.RegisterCallback<ChangeEvent<string>>(ChangePlayerLife);
             // playerWeapon.RegisterCallback<ClickEvent>(ChangeWeapon); //* In wepon script
 
             rightNavigationButton.RegisterCallback<ClickEvent>(evt => GoToNextPanel(1));
             leftNavigationButton.RegisterCallback<ClickEvent>(evt => GoToNextPanel(-1));
-            Debug.Log("here");
 
-
-            InitializeUI();
+            InitializeUI(initSave);
         }
 
         /// <summary>
         /// Initialize data from base or create new if none
         /// </summary>
-        void InitData()
+        SaveGame InitData()
         {
             savedGames = Basedatos.GetSavedGames(); // has all saved games names + player info + settings
 
@@ -131,29 +128,35 @@ namespace ProyectoMain
                 selectedSavedFile = ""; // check if the string is empty. If it is, load button won't work
 
                 // Set default data to initialize UI
-                playerInfo = new PlayerInfo("Unnamed character", 0, 2);
-                settings = new Settings(100, "Normal", false);
+                currPlayerInfo = new PlayerInfo("Unnamed character", 0, 2);
+                currSettings = new Settings(100, "Normal", false);
 
-                currentSaveGame = new SaveGame("", null, null, false);
+                currentSaveGame = new SaveGame("No saved games", currPlayerInfo, currSettings, true);
+
             }
             else {
-                currentSaveGame = savedGames.Find(save => save.Current == true); // gets the marked as current from other session
-                selectedSavedFile = currentSaveGame.Name; // string name of the save file selected by default of the first in the list of saved data
+                SaveGame saveGame = savedGames.Find(save => save.Current == true); // gets the marked as current from other session
+                selectedSavedFile = saveGame.Name; // string name of the save file selected by default of the first in the list of saved data
+
+                currentSaveGame = new SaveGame(saveGame);
 
                 // Initialize to update UI
-                playerInfo = savedGames.First().PlayerInfo;
-                settings = savedGames.First().Settings;
+                currPlayerInfo = currentSaveGame.PlayerInfo;
+                currSettings = currentSaveGame.Settings;
             }
+
+            return new SaveGame(currentSaveGame);
+
         }
 
-        void InitializeUI()
+        void InitializeUI(SaveGame initSave)
         {
             // Debug.Log("InitializeUI");
             InitPanels();
 
             InitializeSaveUI();
-            InitializePlayerUI();
-            InitializeSettingsUI();
+            InitializePlayerUI(initSave);
+            InitializeSettingsUI(initSave);
         }
 
         void InitPanels()
@@ -185,10 +188,12 @@ namespace ProyectoMain
 
                     SaveGame newSaveGame = new SaveGame(
                         save.Name,
-                        save.PlayerInfo,
-                        save.Settings,
+                        new PlayerInfo(save.PlayerInfo),
+                        new Settings(save.Settings),
                         save.Current
                     );
+
+                    // Debug.Log(save.Settings.InvertedAxis);
 
                     SaveGameFile saveFile = new SaveGameFile(newSaveFileElement, newSaveGame.Name);
 
@@ -202,24 +207,45 @@ namespace ProyectoMain
         /// <summary>
         /// Initialize life and weapon
         /// </summary>
-        void InitializePlayerUI() 
+        void InitializePlayerUI(SaveGame initSave) 
         {
-            playerName.value = playerInfo.Name;
-           // playerLife.Estado = playerInfo.Life; // TODO: initialize life UI
+
+            UpdatePlayerInfoUI(initSave);
+            // playerName.value = playerInfo.Name;
+            // value = playerInfo.Life; // TODO: initialize life UI
+
             //* playerInfo.Weapon UI is initialized by the manipulator
         }
 
         /// <summary>
         /// Initialize volume, invertedAxis, difficulty
         /// </summary>
-        void InitializeSettingsUI() 
+        void InitializeSettingsUI(SaveGame initSave) 
         {
-            settingsVolume.value = settings.Volume;
-            settingsInvertedAxis.value = settings.InvertedAxis;
-
             difficultyChoices = new List<string> { "Easy", "Normal", "Hard", "Brasil" };
-            settingsDifficulty.choices = difficultyChoices;
-            settingsDifficulty.value = settings.Difficulty;
+            settingsDifficultyUI.choices = difficultyChoices;
+
+            UpdateSettingsUI(initSave);
+        }
+
+        void UpdateSettingsUI(SaveGame saveGame)
+        {
+            settingsVolumeUI.value = saveGame.Settings.Volume;
+            settingsInvertedAxisUI.value = saveGame.Settings.InvertedAxis;
+            settingsDifficultyUI.value = saveGame.Settings.Difficulty;
+            // currSettings.Difficulty = loadSave.Settings.Difficulty;
+            // currSettings.InvertedAxis = loadSave.Settings.InvertedAxis;
+            // currSettings.Volume = loadSave.Settings.Volume;
+        }
+
+        void UpdatePlayerInfoUI(SaveGame saveGame)
+        {
+            playerNameUI.value = saveGame.PlayerInfo.Name;
+
+            weaponBoxManipulator.SetWeapon(saveGame.PlayerInfo.Weapon); // Sets the weapon in the Box
+            // currPlayerInfo.Name = loadSave.PlayerInfo.Name;
+            // currPlayerInfo.Weapon = loadSave.PlayerInfo.Weapon;
+            // currPlayerInfo.Life = loadSave.PlayerInfo.Life;
         }
 
         void SelectSavedFile(ClickEvent evt)
@@ -249,21 +275,31 @@ namespace ProyectoMain
             SavedFileBorderWhite(newSaveFileElement);
 
             SaveGame newSaveGame = new SaveGame(
-                playerInfo.Name + " | " + DateTime.Now.ToString(),
-                playerInfo,
-                settings,
+                currPlayerInfo.Name + " | " + DateTime.Now.ToString(),
+                new PlayerInfo(currPlayerInfo),
+                new Settings(currSettings),
                 true
             );
 
-            // Updates the current save game loaded
-            currentSaveGame.Current = false;
-            currentSaveGame = newSaveGame;
+            savedGames.Add(newSaveGame);
+            Basedatos.SaveSavedGames(savedGames);
+
+            if (selectedSavedFile != "") {
+                // Updates the current save game loaded
+                SaveGame currentSave = savedGames.Find(save => save.Name == currentGameLabel.text);
+                currentSave.Current = false;
+            }
+
+            UpdateSettingsUI(newSaveGame);
+            UpdatePlayerInfoUI(newSaveGame);
+
+            // currPlayerInfo = newSaveGame.PlayerInfo;
+            // currSettings = newSaveGame.Settings; ??
 
             SaveGameFile saveFile = new SaveGameFile(newSaveFileElement, newSaveGame.Name);
             selectedSavedFile = newSaveGame.Name;
+            currentGameLabel.text = newSaveGame.Name;
 
-            savedGames.Add(newSaveGame);
-            Basedatos.SaveSavedGames(savedGames);
         }
 
         /// <summary>
@@ -273,63 +309,60 @@ namespace ProyectoMain
         /// <param name="evt"></param>
         void LoadSavedFile(ClickEvent evt)
         {
-            Debug.Log("load");
-
             if (selectedSavedFile == "") // if no saved game, does nothing
                 return;
 
             SaveGame loadSave = savedGames.Find(save => save.Name == selectedSavedFile); // gets the save with the selected name
+            // Debug.Log("load");
+            loadSave.Current = true;
+            
+            // Update current game loaded
+            SaveGame currentSave = savedGames.Find(save => save.Name == currentGameLabel.text);
+            currentSave.Current = false;
+
+            SaveGame load = new SaveGame(loadSave);
+            // currPlayerInfo = load.PlayerInfo;
+            // currSettings = load.Settings;
 
             // Updates data
-            playerInfo = loadSave.PlayerInfo;
-            settings = loadSave.Settings;
 
-            weaponBoxManipulator.SetWeapon(playerInfo.Weapon); // Sets the weapon in the Box
+            UpdateSettingsUI(load);
+            UpdatePlayerInfoUI(load);
+            
+            currentGameLabel.text = selectedSavedFile; // updates the current save data display    
 
-            // Update current game loaded
-            currentSaveGame.Current = false;
-            currentSaveGame = loadSave;
-            loadSave.Current = true;
-            Debug.Log(selectedSavedFile);
-            currentGameLabel.text = selectedSavedFile; // updates the current save data display
+            Basedatos.SaveSavedGames(savedGames);
         }
 
         void ChangePlayerName(ChangeEvent<string> evt)
         {
-            playerInfo.Name = evt.newValue;
+            currPlayerInfo.Name = evt.newValue;
         }
 
         public void ChangeWeapon(int weaponIdx)
         {
-            playerInfo.Weapon = weaponIdx;
+            currPlayerInfo.Weapon = weaponIdx;
         }
 
         public int GetWeapon()
         {
-            return playerInfo.Weapon;
+            return currPlayerInfo.Weapon;
         }
 
         public void ChangeLife(int lifePoints)
         {
-            playerInfo.Life = lifePoints;
+            currPlayerInfo.Life = lifePoints;
         }
 
         void ChangeVolume(ChangeEvent<float> evt)
         {
-            settings.Volume = evt.newValue;
+            currSettings.Volume = evt.newValue;
         }
 
         void ChangeDifficulty(ChangeEvent<string> evt)
         {
-            settings.Difficulty = evt.newValue;
+            currSettings.Difficulty = evt.newValue;
         }
-
-        // ! Use as examplo if feature to delete multiple save datas
-        // void Cambio(ChangeEvent<string> evt){
-        //     if (toggleModificar.value){
-        //         individuoSelec.Nombre = evt.newValue;
-        //     }
-        // }
 
         /// <summary>
         /// Change border color of all file elements

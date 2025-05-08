@@ -17,14 +17,14 @@ namespace ProyectoMain
         public SaveGameFile(VisualElement savefileRoot, string name) {
             this.savefileRoot = savefileRoot;
             this.name = name;
-            Debug.Log(this.name);
+            // Debug.Log(this.name);
             buttonName = savefileRoot.Q<Button>("SavedFile");
 
             UpdateUI();
         }
 
         void UpdateUI(){
-            Debug.Log(name);
+            // Debug.Log(name);
             buttonName.text = name;
         }
     }
