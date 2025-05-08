@@ -4,6 +4,7 @@ using UnityEngine;
 using static UnityEngine.UIElements.VisualElement;
 using UnityEngine.UIElements;
 
+
 public class LifeStatusDisplay : VisualElement
 {
     List<VisualElement> items;
@@ -17,6 +18,8 @@ public class LifeStatusDisplay : VisualElement
         {
             estado = value;
             setDisplay();
+           
+            ProyectoMain.ProyectoMain.Instance?.ChangeLife(value);
         }
     }
 
@@ -71,3 +74,4 @@ public class LifeStatusDisplay : VisualElement
         }
     }
 }
+

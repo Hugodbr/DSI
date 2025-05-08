@@ -29,18 +29,29 @@ namespace ProyectoMain {
 
         protected override void RegisterCallbacksOnTarget()
         {
-            Debug.Log("callback");
+          //  Debug.Log("callback");
 
             target.RegisterCallback<WheelEvent>(OnWheelMove);
 
             // Define the image after instance exits
-            weapon_indx = ProyectoMain.Instance.GetWeapon();
+            if(ProyectoMain.Instance != null)
+                weapon_indx = ProyectoMain.Instance.GetWeapon();
+            
             target.style.backgroundImage = m_weapon_images[weapon_indx];
         }
 
         protected override void UnregisterCallbacksFromTarget()
         {
             target.UnregisterCallback<WheelEvent>(OnWheelMove);
+        }
+
+        public void SetWeapon(int weapon_indx)
+        {
+            Debug.Log("Setting Weapon " + weapon_indx);
+            target.style.backgroundImage = m_weapon_images[weapon_indx]; // Sets the image of the current weapon
+            
+            if(ProyectoMain.Instance != null)
+                ProyectoMain.Instance.ChangeWeapon(weapon_indx); // changes weapon for save purposes
         }
 
         protected void OnWheelMove(WheelEvent e)
@@ -59,9 +70,7 @@ namespace ProyectoMain {
                 if (weapon_indx < 0) weapon_indx = 5;
             }
 
-            target.style.backgroundImage = m_weapon_images[weapon_indx]; // Sets the image of the current weapon
-
-            ProyectoMain.Instance.ChangeWeapon(weapon_indx); // changes weapon for save purposes
+            SetWeapon(weapon_indx); // Sets the image of the current 
 
             e.StopPropagation();
         }

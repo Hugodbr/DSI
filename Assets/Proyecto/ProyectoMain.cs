@@ -23,8 +23,9 @@ namespace ProyectoMain
 
 
         TextField playerName;
-        VisualElement playerLife;
+        LifeStatusDisplay playerLife;
         VisualElement playerWeapon;
+        WeaponSelectorManipulator weaponBoxManipulator;
 
         Label currentGameLabel;
         SaveGame currentSaveGame;
@@ -86,8 +87,11 @@ namespace ProyectoMain
             settingsInvertedAxis = settingsPanel.Query<Toggle>("InvertedAxis");
             
             playerName = playerInfoPanel.Query<TextField>("PlayerName"); // ! update or assert child of playerInfoPanel
-            playerLife = playerInfoPanel.Q<VisualElement>("PlayerLife"); // ! update or assert child of playerInfoPanel // VisualElement?
+            playerLife = playerInfoPanel.Q<LifeStatusDisplay>("PlayerLife"); // ! update or assert child of playerInfoPanel // VisualElement?
             playerWeapon = playerInfoPanel.Q<VisualElement>("PlayerWeapon"); // ! update or assert child of playerInfoPanel // VisualElement?
+            
+            weaponBoxManipulator = new WeaponSelectorManipulator();
+            root.Query(className: "weaponSelectorBox").First().AddManipulator(weaponBoxManipulator);
 
             saveGameButton = savedGamesPanel.Q<Button>("SaveGameButton");
             loadGameButton = savedGamesPanel.Q<Button>("LoadGameButton");
@@ -201,7 +205,7 @@ namespace ProyectoMain
         void InitializePlayerUI() 
         {
             playerName.value = playerInfo.Name;
-            // value = playerInfo.Life; // TODO: initialize life UI
+           // playerLife.Estado = playerInfo.Life; // TODO: initialize life UI
             //* playerInfo.Weapon UI is initialized by the manipulator
         }
 
@@ -279,7 +283,9 @@ namespace ProyectoMain
             // Updates data
             playerInfo = loadSave.PlayerInfo;
             settings = loadSave.Settings;
-            
+
+            weaponBoxManipulator.SetWeapon(playerInfo.Weapon); // Sets the weapon in the Box
+
             // Update current game loaded
             currentSaveGame.Current = false;
             currentSaveGame = loadSave;
@@ -301,6 +307,11 @@ namespace ProyectoMain
         public int GetWeapon()
         {
             return playerInfo.Weapon;
+        }
+
+        public void ChangeLife(int lifePoints)
+        {
+            playerInfo.Life = lifePoints;
         }
 
         void ChangeVolume(ChangeEvent<float> evt)
