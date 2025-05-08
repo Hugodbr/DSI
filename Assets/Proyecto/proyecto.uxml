@@ -15,9 +15,9 @@
             <ui:VisualElement name="display" class="display" style="flex-direction: row;">
                 <ui:VisualElement name="tabMenu1" style="flex-grow: 1; flex-direction: row;">
                     <ui:VisualElement name="info" style="flex-grow: 1;">
-                        <ui:TextField picking-mode="Ignore" label="Character" value="Unnamed Player" name="PlayerName" style="height: 10%; min-width: auto; min-height: 10px; background-color: rgba(0, 0, 0, 0); font-size: 38px; color: rgb(69, 127, 255); flex-grow: 1; flex-shrink: 1; max-height: 10%;" />
+                        <ui:TextField picking-mode="Ignore" label="Character" value="Unnamed Player" name="PlayerName" class="playerName" style="height: 10%; min-width: auto; min-height: 10px; font-size: 38px; color: rgb(69, 127, 255); flex-grow: 1; flex-shrink: 1; max-height: 10%;" />
                         <ui:VisualElement name="characterIcon" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Proyecto/Art/UI/Avatars/Sprite_Avatar_Knight.png?fileID=2800000&amp;guid=37d638a1a60c84e8c88aec78c7fd88bf&amp;type=3#Sprite_Avatar_Knight&quot;);" />
-                        <LifeStatusDisplay life-points="3" name="PlayerLife" style="flex-direction: row; margin-left: 20%;" />
+                        <LifeStatusDisplay life-points="5" name="PlayerLife" focusable="true" style="flex-direction: row; margin-left: 20%;" />
                     </ui:VisualElement>
                     <ui:VisualElement name="weaponSelector" class="weaponSelectorBox" style="flex-grow: 1;" />
                 </ui:VisualElement>
