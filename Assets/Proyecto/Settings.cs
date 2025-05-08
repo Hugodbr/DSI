@@ -55,5 +55,11 @@ namespace ProyectoMain
             this.difficulty = difficulty;
             this.invertedAxis = invertedAxis;
         }
+
+        public Settings(Settings other){
+            this.volume = other.volume;
+            this.difficulty = other.difficulty;
+            this.invertedAxis = other.invertedAxis;
+        }
     }
 }

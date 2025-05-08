@@ -56,5 +56,12 @@ namespace ProyectoMain
             this.life = life;
         }
 
+        public PlayerInfo(PlayerInfo other)
+        {
+            this.name = other.name;
+            this.weapon = other.weapon;
+            this.life = other.life;
+        }
+
     }
 }

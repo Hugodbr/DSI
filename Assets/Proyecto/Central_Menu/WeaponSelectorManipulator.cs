@@ -29,8 +29,6 @@ namespace ProyectoMain {
 
         protected override void RegisterCallbacksOnTarget()
         {
-            Debug.Log("callback");
-
             target.RegisterCallback<WheelEvent>(OnWheelMove);
 
             // Define the image after instance exits

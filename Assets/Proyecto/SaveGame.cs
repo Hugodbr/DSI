@@ -48,5 +48,13 @@ namespace ProyectoMain
             this.playerInfo = playerInfo;
             this.settings = settings;
         }
+
+        public SaveGame(SaveGame other)
+        {
+            this.name = other.name;
+            this.current = other.Current;
+            this.playerInfo = new PlayerInfo(other.PlayerInfo);
+            this.settings = new Settings(other.Settings);
+        }
     }
 }
