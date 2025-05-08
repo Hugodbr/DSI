@@ -23,7 +23,7 @@
             </ui:VisualElement>
             <ui:VisualElement name="footer" style="flex-grow: 0; flex-basis: 10%; flex-shrink: 0;" />
         </ui:VisualElement>
-        <ui:VisualElement name="SettingsPanel" style="flex-grow: 1; cursor: initial; background-image: none; -unity-background-image-tint-color: rgba(255, 254, 255, 0); display: flex; flex-direction: column;">
+        <ui:VisualElement name="SettingsPanel" style="flex-grow: 1; cursor: initial; background-image: none; -unity-background-image-tint-color: rgba(255, 254, 255, 0); display: none; flex-direction: column;">
             <ui:VisualElement name="menuInfo" class="display" style="flex-grow: 0; height: 20%; flex-basis: 15%; flex-shrink: 0; margin-top: 5%; flex-direction: row;">
                 <ui:VisualElement name="settingsTitle" class="tabButton" style="flex-grow: 1;">
                     <ui:Label tabindex="-1" text="Settings" parse-escape-sequences="true" display-tooltip-when-elided="true" class="tabText" />
@@ -36,17 +36,16 @@
                 <ui:VisualElement name="controlsField" class="settingField" style="flex-grow: 1;">
                     <ui:Toggle label="Inverted Axis" name="InvertedAxis" class="settingsText" style="flex-shrink: 1; flex-grow: 1;" />
                 </ui:VisualElement>
-                <ui:VisualElement name="networkingField" class="settingField" style="flex-grow: 1;" />
                 <ui:VisualElement name="difficultyField" class="settingField" style="flex-grow: 1; margin-bottom: 20px;">
                     <ui:DropdownField label="Difficulty" name="SettingsDifficulty" style="flex-shrink: 1; flex-grow: 1; -unity-text-align: middle-center; color: rgb(0, 0, 0); font-size: 43px;" />
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="footer" style="flex-grow: 0; flex-basis: 10%; flex-shrink: 0;" />
         </ui:VisualElement>
-        <ui:VisualElement name="SavedGamesPanel" style="flex-grow: 1; cursor: initial; background-image: none; -unity-background-image-tint-color: rgba(255, 254, 255, 0); display: none;">
+        <ui:VisualElement name="SavedGamesPanel" style="flex-grow: 1; cursor: initial; background-image: none; -unity-background-image-tint-color: rgba(255, 254, 255, 0); display: flex;">
             <ui:VisualElement name="menuInfo" class="display" style="flex-grow: 0; height: 20%; flex-basis: 15%; flex-shrink: 0; margin-top: 5%; flex-direction: row;">
                 <ui:VisualElement name="saveTitle" class="tabButton" style="flex-grow: 1;">
-                    <ui:Label tabindex="-1" text="SAVES" parse-escape-sequences="true" display-tooltip-when-elided="true" class="tabText" />
+                    <ui:Label tabindex="-1" text="Save/Load Game" parse-escape-sequences="true" display-tooltip-when-elided="true" class="tabText" />
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="display" class="display" style="flex-direction: column;">
