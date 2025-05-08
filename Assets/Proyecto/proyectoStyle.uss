@@ -204,3 +204,19 @@
     color: rgb(255, 255, 255);
     background-color: rgba(0, 0, 0, 0);
 }
+
+.savedFileBtt:hover {
+    background-color: rgb(255, 255, 255);
+    height: 69px;
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+    border-top-width: 4px;
+    border-right-width: 4px;
+    border-bottom-width: 4px;
+    border-left-width: 4px;
+    color: rgb(0, 0, 0);
+    font-size: 30px;
+    -unity-text-align: middle-center;
+}
