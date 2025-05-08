@@ -243,6 +243,8 @@ namespace ProyectoMain
             playerNameUI.value = saveGame.PlayerInfo.Name;
 
             weaponBoxManipulator.SetWeapon(saveGame.PlayerInfo.Weapon); // Sets the weapon in the Box
+
+            playerLifeUI.Estado = saveGame.PlayerInfo.Life;
             // currPlayerInfo.Name = loadSave.PlayerInfo.Name;
             // currPlayerInfo.Weapon = loadSave.PlayerInfo.Weapon;
             // currPlayerInfo.Life = loadSave.PlayerInfo.Life;
